@@ -1,0 +1,63 @@
+.header {
+  background: linear-gradient(to right, #000000, #a32020);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1 1 auto;
+    min-width: 0;
+
+    .logo {
+        a {
+            color: #fff !important; // đổi màu thành trắng
+            font-weight: bold;
+            font-size: 18px;
+            text-decoration: none;
+
+            
+        }
+    }
+
+    .search-course {
+      min-width: 250px;
+      max-width: 100%;
+      flex: 1;
+    }
+  }
+
+ .menu {
+  background: transparent;
+  border-bottom: none;
+  flex-shrink: 0;
+  white-space: nowrap;
+
+  .ant-menu-item {
+    a {
+      color: #fff !important;
+      text-decoration: none;
+    }
+
+    // Gạch chân màu trắng khi hover
+    &:hover::after {
+      border-bottom: 2px solid #fff !important;
+    }
+
+    // Khi được chọn
+    &.ant-menu-item-selected {
+      a {
+        color: #fff !important;
+      }
+
+      &::after {
+        border-bottom: 2px solid #fff !important;
+      }
+    }
+  }
+}
+}

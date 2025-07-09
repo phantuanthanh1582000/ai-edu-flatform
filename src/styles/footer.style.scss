@@ -1,0 +1,48 @@
+.footer {
+  background: linear-gradient(to right, #000000, #a32020);
+  padding: 40px 24px;
+  color: #fff;
+
+  .footer-logo {
+    font-weight: bold;
+    color: #fff; // màu cho Title level 4
+  }
+
+  .ant-typography {
+    color: #fff; // màu cho Text
+  }
+
+  h5.ant-typography {
+    color: #fff; // màu cho Title level 5
+  }
+
+  a {
+    color: #a6a6a6;
+    text-decoration: none;
+    transition: color 0.3s;
+
+    &:hover {
+      color: #1890ff;
+    }
+  }
+
+  .footer-icons {
+    a {
+      font-size: 24px;
+      margin-right: 12px;
+
+      &:hover {
+        color: #1890ff;
+      }
+    }
+  }
+
+  .footer-bottom {
+    margin-top: 40px;
+    text-align: center;
+
+    span {
+      color: #ccc;
+    }
+  }
+}
