@@ -10,7 +10,7 @@ const UserLayout = () => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <HeaderComponent />
-      <Content style={{ padding: '24px' }}>
+      <Content>
         <Outlet />
       </Content>
       <FooterComponent />

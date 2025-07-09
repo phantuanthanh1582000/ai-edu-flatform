@@ -3,7 +3,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "target": "es6",
+    "lib": ["es6", "dom"]
   },
   "include": ["src"]
 }

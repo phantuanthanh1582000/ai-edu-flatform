@@ -3,6 +3,7 @@ import { Layout, Menu } from 'antd';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { DebounceSelect } from '@/components/share/DebounceSelect';
+import { Categories } from '@/data/mockData';
 import '@/styles/header.style.scss'; 
 
 const { Header } = Layout;
@@ -12,22 +13,16 @@ const HeaderComponent = () => {
   const navigate = useNavigate();
 
   const fetchCourseOptions = async (search) => {
-    const allCourses = [
-      { label: 'React cơ bản', value: 'react' },
-      { label: 'NodeJS nâng cao', value: 'nodejs' },
-      { label: 'Khóa học AI', value: 'ai' },
-      { label: 'Tiếng Anh giao tiếp', value: 'english' },
-    ];
-    return allCourses
-      .filter((c) => c.label.toLowerCase().includes(search.toLowerCase()))
-      .map((c) => ({
-        label: c.label,
-        value: c.value,
+    return Categories
+      .filter((cat) => cat.name.toLowerCase().includes(search.toLowerCase()))
+      .map((cat) => ({
+        label: cat.name,
+        value: cat.value,
       }));
   };
 
   const onSelectCourse = (course) => {
-    navigate(`/?search=${encodeURIComponent(course.value)}`);
+    navigate(`/courses?category=${encodeURIComponent(course.value)}`);
   };
 
   const menuItems = [

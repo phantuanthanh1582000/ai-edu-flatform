@@ -1,5 +1,5 @@
 .header {
-  background: linear-gradient(to right, #000000, #a32020);
+  background-color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 0 24px;
   height: 64px;
@@ -15,7 +15,7 @@
 
     .logo {
         a {
-            color: #fff !important; // đổi màu thành trắng
+            color: black !important; // đổi màu thành trắng
             font-weight: bold;
             font-size: 18px;
             text-decoration: none;
@@ -38,26 +38,29 @@
   white-space: nowrap;
 
   .ant-menu-item {
+  a {
+    color: #999 !important;
+    text-decoration: none;
+  }
+
+  // Hover: chỉ đổi màu chữ, không gạch chân
+  &:hover {
     a {
-      color: #fff !important;
-      text-decoration: none;
-    }
-
-    // Gạch chân màu trắng khi hover
-    &:hover::after {
-      border-bottom: 2px solid #fff !important;
-    }
-
-    // Khi được chọn
-    &.ant-menu-item-selected {
-      a {
-        color: #fff !important;
-      }
-
-      &::after {
-        border-bottom: 2px solid #fff !important;
-      }
+      color: black !important;
     }
   }
+
+  // Khi được chọn
+  &.ant-menu-item-selected {
+    a {
+      color: black !important;
+    }
+  }
+
+  // Xóa đường viền dưới nếu Ant Design thêm qua ::after
+  &::after {
+    border-bottom: none !important;
+  }
+}
 }
 }
