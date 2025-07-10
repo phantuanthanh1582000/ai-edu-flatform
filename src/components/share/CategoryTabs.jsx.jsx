@@ -39,14 +39,15 @@ const CategoryTabs = () => {
 
   return (
     <Tabs
-      defaultActiveKey=""
+      activeKey={activeKey}
       onChange={setActiveKey}
       size="large"
       tabBarGutter={32}
       style={{ background: '#fff', borderRadius: 8, padding: 24 }}
-    >
-      {Categories.map((cate) => (
-        <Tabs.TabPane tab={cate.name} key={cate.value}>
+      items={Categories.map((cate) => ({
+        key: cate.value,
+        label: cate.name,
+        children: (
           <Spin spinning={loading}>
             <Row gutter={[16, 16]} justify="left">
               {courses.slice(0, 12).map((course) => (
@@ -55,17 +56,16 @@ const CategoryTabs = () => {
                 </Col>
               ))}
             </Row>
-            
+
             <div style={{ textAlign: 'center', marginTop: 24 }}>
-            <Button type="primary" onClick={handleViewMore} style={{ fontWeight: 'bold' }}>
-                Xem thêm 
-            </Button>
+              <Button type="primary" onClick={handleViewMore} style={{ fontWeight: 'bold' }}>
+                Xem thêm
+              </Button>
             </div>
-          
           </Spin>
-        </Tabs.TabPane>
-      ))}
-    </Tabs>
+        )
+      }))}
+    />
   );
 };
 

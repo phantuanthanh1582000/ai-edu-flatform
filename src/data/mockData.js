@@ -1,15 +1,66 @@
 const getImage = (name) => new URL(`/src/assets/course/${name}.png`, import.meta.url).href;
 
+export const FeaturedTeachers = [
+  {
+    id: 't1',
+    name: 'Nguyễn Minh Phúc',
+    title: 'Chuyên gia ReactJS',
+    image: 'https://i.pravatar.cc/150?img=11',
+    description: '10 năm kinh nghiệm giảng dạy frontend tại FPT và TechMaster.',
+  },
+  {
+    id: 't2',
+    name: 'Lê Thị Hồng Nhung',
+    title: 'Chuyên gia Trí tuệ nhân tạo (AI)',
+    image: 'https://i.pravatar.cc/150?img=12',
+    description: 'Tiến sĩ AI tại Nhật Bản, đã đào tạo hơn 25.000 học viên.',
+  },
+  {
+    id: 't3',
+    name: 'Phạm Văn Đạt',
+    title: 'Chuyên gia UX/UI Design',
+    image: 'https://i.pravatar.cc/150?img=13',
+    description: 'Hơn 8 năm làm việc tại các startup công nghệ lớn như Tiki, MoMo.',
+  },
+  {
+    id: 't4',
+    name: 'Trần Quang Huy',
+    title: 'Chuyên gia Backend NodeJS',
+    image: 'https://i.pravatar.cc/150?img=14',
+    description: 'Kỹ sư phần mềm tại Google Singapore, tác giả nhiều khoá học backend.',
+  },
+  {
+    id: 't5',
+    name: 'Đỗ Ngọc Ánh',
+    title: 'Chuyên gia Data Science',
+    image: 'https://i.pravatar.cc/150?img=15',
+    description: 'Chuyên viên phân tích dữ liệu tại Shopee, giảng viên VietAI.',
+  },
+  {
+    id: 't6',
+    name: 'Ngô Thanh Bình',
+    title: 'Chuyên gia DevOps',
+    image: 'https://i.pravatar.cc/150?img=16',
+    description: 'Từng làm tại Amazon Web Services (AWS), hướng dẫn CI/CD và cloud.',
+  },
+];
+
+
+
 export const Courses = [
   // 👉 Frontend
   {
     id: 'c1',
     name: 'ReactJS Cơ Bản',
     price: 499000,
+    discountPrice: 299000,
+    popular: true,
     image: getImage('React'),
     shortDesc: 'Học ReactJS từ cơ bản đến nâng cao.',
     category: 'frontend',
     subcategory: 'react',
+    teacher: 'Nguyễn Văn An',
+    videoCount: 42,
   },
   {
     id: 'c2',
@@ -19,15 +70,21 @@ export const Courses = [
     shortDesc: 'Khóa học dành cho người mới bắt đầu với VueJS.',
     category: 'frontend',
     subcategory: 'vue',
+    teacher: 'Trần Thị Mai',
+    videoCount: 38,
   },
   {
     id: 'c3',
     name: 'Angular Toàn Tập',
     price: 520000,
+    discountPrice: 350000,
+    popular: true,
     image: getImage('Angular'),
     shortDesc: 'Nắm vững Angular và xây dựng ứng dụng hiện đại.',
     category: 'frontend',
     subcategory: 'angular',
+    teacher: 'Lê Minh Trí',
+    videoCount: 45,
   },
   {
     id: 'c4',
@@ -37,6 +94,9 @@ export const Courses = [
     shortDesc: 'Hooks, Redux, và tối ưu hóa React.',
     category: 'frontend',
     subcategory: 'react',
+    teacher: 'Nguyễn Văn An',
+    videoCount: 36,
+    isAdvanced: true
   },
   {
     id: 'c5',
@@ -46,6 +106,9 @@ export const Courses = [
     shortDesc: 'Khám phá Vue 3 hiện đại.',
     category: 'frontend',
     subcategory: 'vue',
+    teacher: 'Trần Thị Mai',
+    videoCount: 33,
+    isAdvanced: true
   },
 
   // 👉 Backend
@@ -53,10 +116,13 @@ export const Courses = [
     id: 'c6',
     name: 'NodeJS từ A-Z',
     price: 599000,
+    popular: true,
     image: getImage('Nodejs'),
     shortDesc: 'Xây dựng server backend với NodeJS.',
     category: 'backend',
     subcategory: 'nodejs',
+    teacher: 'Phạm Hữu Dũng',
+    videoCount: 40,
   },
   {
     id: 'c7',
@@ -66,6 +132,8 @@ export const Courses = [
     shortDesc: 'Tạo API backend với Java Spring Boot.',
     category: 'backend',
     subcategory: 'java',
+    teacher: 'Trương Văn Khánh',
+    videoCount: 44,
   },
   {
     id: 'c8',
@@ -75,6 +143,8 @@ export const Courses = [
     shortDesc: 'Tạo web app với Flask Python.',
     category: 'backend',
     subcategory: 'python',
+    teacher: 'Lê Thị Ngọc Hân',
+    videoCount: 35,
   },
   {
     id: 'c9',
@@ -84,6 +154,9 @@ export const Courses = [
     shortDesc: 'Middleware, JWT, và RESTful API.',
     category: 'backend',
     subcategory: 'nodejs',
+    teacher: 'Phạm Hữu Dũng',
+    videoCount: 39,
+    isAdvanced: true
   },
   {
     id: 'c10',
@@ -93,6 +166,9 @@ export const Courses = [
     shortDesc: 'Xây dựng website với Django.',
     category: 'backend',
     subcategory: 'python',
+    teacher: 'Lê Thị Ngọc Hân',
+    videoCount: 41,
+    isAdvanced: true
   },
 
   // 👉 AI
@@ -100,10 +176,14 @@ export const Courses = [
     id: 'c11',
     name: 'Machine Learning Cơ Bản',
     price: 650000,
+    discountPrice: 480000,
+    popular: true,
     image: getImage('Django'),
     shortDesc: 'Nhập môn học máy với scikit-learn.',
     category: 'ai',
     subcategory: 'ml',
+    teacher: 'Trần Anh Tú',
+    videoCount: 46,
   },
   {
     id: 'c12',
@@ -113,6 +193,9 @@ export const Courses = [
     shortDesc: 'Xây dựng mạng neural với TensorFlow.',
     category: 'ai',
     subcategory: 'dl',
+    teacher: 'Ngô Đức Minh',
+    videoCount: 50,
+    isAdvanced: true
   },
   {
     id: 'c13',
@@ -122,6 +205,8 @@ export const Courses = [
     shortDesc: 'Ứng dụng Python vào phân tích dữ liệu và ML.',
     category: 'ai',
     subcategory: 'ml',
+    teacher: 'Trần Anh Tú',
+    videoCount: 43,
   },
   {
     id: 'c14',
@@ -131,6 +216,9 @@ export const Courses = [
     shortDesc: 'Train mô hình DL bằng Keras.',
     category: 'ai',
     subcategory: 'dl',
+    teacher: 'Ngô Đức Minh',
+    videoCount: 48,
+    isAdvanced: true
   },
   {
     id: 'c15',
@@ -140,6 +228,9 @@ export const Courses = [
     shortDesc: 'Tích hợp AI vào sản phẩm.',
     category: 'ai',
     subcategory: 'ml',
+    teacher: 'Ngô Đức Minh',
+    videoCount: 37,
+    isAdvanced: true
   },
 
   // 👉 Data Science
@@ -151,6 +242,8 @@ export const Courses = [
     shortDesc: 'Xử lý dữ liệu hiệu quả với Pandas.',
     category: 'data-science',
     subcategory: 'analysis',
+    teacher: 'Đặng Thị Phương',
+    videoCount: 34,
   },
   {
     id: 'c17',
@@ -160,6 +253,8 @@ export const Courses = [
     shortDesc: 'Xử lý dữ liệu lớn bằng Hadoop.',
     category: 'data-science',
     subcategory: 'bigdata',
+    teacher: 'Nguyễn Trọng Nam',
+    videoCount: 41,
   },
   {
     id: 'c18',
@@ -169,6 +264,8 @@ export const Courses = [
     shortDesc: 'Biểu diễn dữ liệu với Matplotlib, Seaborn.',
     category: 'data-science',
     subcategory: 'analysis',
+    teacher: 'Đặng Thị Phương',
+    videoCount: 30,
   },
   {
     id: 'c19',
@@ -178,6 +275,9 @@ export const Courses = [
     shortDesc: 'Tính toán song song với Spark.',
     category: 'data-science',
     subcategory: 'bigdata',
+    teacher: 'Nguyễn Trọng Nam',
+    videoCount: 42,
+    isAdvanced: true
   },
   {
     id: 'c20',
@@ -187,6 +287,8 @@ export const Courses = [
     shortDesc: 'Xử lý dữ liệu từ A-Z.',
     category: 'data-science',
     subcategory: 'analysis',
+    teacher: 'Đặng Thị Phương',
+    videoCount: 36,
   },
 
   // 👉 DevOps
@@ -194,10 +296,14 @@ export const Courses = [
     id: 'c21',
     name: 'Docker cho DevOps',
     price: 499000,
+    discountPrice: 390000,
+    popular: true,
     image: getImage('Django'),
     shortDesc: 'Sử dụng Docker để triển khai ứng dụng.',
     category: 'devops',
     subcategory: 'docker',
+    teacher: 'Trịnh Huy Hoàng',
+    videoCount: 29,
   },
   {
     id: 'c22',
@@ -207,6 +313,8 @@ export const Courses = [
     shortDesc: 'Tự động hóa quy trình build-deploy.',
     category: 'devops',
     subcategory: 'cicd',
+    teacher: 'Trịnh Huy Hoàng',
+    videoCount: 32,
   },
   {
     id: 'c23',
@@ -216,6 +324,9 @@ export const Courses = [
     shortDesc: 'Orchestration container nâng cao.',
     category: 'devops',
     subcategory: 'docker',
+    teacher: 'Trịnh Huy Hoàng',
+    videoCount: 38,
+    isAdvanced: true
   },
   {
     id: 'c24',
@@ -225,6 +336,8 @@ export const Courses = [
     shortDesc: 'Thiết lập pipeline CI/CD.',
     category: 'devops',
     subcategory: 'cicd',
+    teacher: 'Trịnh Huy Hoàng',
+    videoCount: 36,
   },
   {
     id: 'c25',
@@ -234,6 +347,9 @@ export const Courses = [
     shortDesc: 'Theo dõi hệ thống với Prometheus.',
     category: 'devops',
     subcategory: 'docker',
+    teacher: 'Trịnh Huy Hoàng',
+    videoCount: 34,
+    isAdvanced: true
   },
 
   // 👉 UI/UX
@@ -241,10 +357,13 @@ export const Courses = [
     id: 'c26',
     name: 'Thiết kế UI với Figma',
     price: 450000,
+    popular: true,
     image: getImage('Django'),
     shortDesc: 'Tạo giao diện hiện đại với Figma.',
     category: 'uiux',
     subcategory: 'figma',
+    teacher: 'Nguyễn Thị Hằng',
+    videoCount: 27,
   },
   {
     id: 'c27',
@@ -254,6 +373,8 @@ export const Courses = [
     shortDesc: 'Hiểu hành vi người dùng và thiết kế phù hợp.',
     category: 'uiux',
     subcategory: 'design-system',
+    teacher: 'Nguyễn Thị Hằng',
+    videoCount: 30,
   },
   {
     id: 'c28',
@@ -263,6 +384,8 @@ export const Courses = [
     shortDesc: 'Tạo hệ thống UI đồng nhất.',
     category: 'uiux',
     subcategory: 'design-system',
+    teacher: 'Nguyễn Thị Hằng',
+    videoCount: 26,
   },
   {
     id: 'c29',
@@ -272,6 +395,9 @@ export const Courses = [
     shortDesc: 'Kỹ thuật nâng cao với Figma.',
     category: 'uiux',
     subcategory: 'figma',
+    teacher: 'Nguyễn Thị Hằng',
+    videoCount: 22,
+    isAdvanced: true
   },
   {
     id: 'c30',
@@ -281,6 +407,9 @@ export const Courses = [
     shortDesc: 'Thiết kế mobile-first hiệu quả.',
     category: 'uiux',
     subcategory: 'design-system',
+    teacher: 'Nguyễn Thị Hằng',
+    videoCount: 25,
+    isAdvanced: true
   },
 
   // 👉 Mobile
@@ -288,10 +417,13 @@ export const Courses = [
     id: 'c31',
     name: 'React Native từ Cơ Bản',
     price: 600000,
+    popular: true,
     image: getImage('Django'),
     shortDesc: 'Viết ứng dụng mobile đa nền tảng.',
     category: 'mobile',
     subcategory: 'react-native',
+    teacher: 'Hoàng Đức Duy',
+    videoCount: 35,
   },
   {
     id: 'c32',
@@ -301,6 +433,8 @@ export const Courses = [
     shortDesc: 'Tạo app mobile với Flutter & Dart.',
     category: 'mobile',
     subcategory: 'flutter',
+    teacher: 'Nguyễn Văn Lâm',
+    videoCount: 40,
   },
   {
     id: 'c33',
@@ -310,6 +444,9 @@ export const Courses = [
     shortDesc: 'Tích hợp native module, animation.',
     category: 'mobile',
     subcategory: 'react-native',
+    teacher: 'Hoàng Đức Duy',
+    videoCount: 37,
+    isAdvanced: true
   },
   {
     id: 'c34',
@@ -319,6 +456,9 @@ export const Courses = [
     shortDesc: 'Tạo app realtime với Flutter + Firebase.',
     category: 'mobile',
     subcategory: 'flutter',
+    teacher: 'Nguyễn Văn Lâm',
+    videoCount: 33,
+    isAdvanced: true
   },
   {
     id: 'c35',
@@ -328,6 +468,8 @@ export const Courses = [
     shortDesc: 'Tối ưu trải nghiệm người dùng trên mobile.',
     category: 'mobile',
     subcategory: 'flutter',
+    teacher: 'Nguyễn Thị Hằng',
+    videoCount: 28,
   },
 ];
 

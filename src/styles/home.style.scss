@@ -1,4 +1,5 @@
 .home-page {
+  // ===== CATEGORY BAR =====
   .category-bar {
     background-color: rgb(0 53 85 / var(--tw-bg-opacity, 1));
     padding: 10px 0;
@@ -31,6 +32,7 @@
     }
   }
 
+  // ===== BANNER =====
   .banner-wrapper {
     display: flex;
     justify-content: center;
@@ -43,6 +45,7 @@
     }
   }
 
+  // ===== COURSE CARD =====
   .course-title {
     text-align: center;
     margin-bottom: 32px;
@@ -73,4 +76,29 @@
       margin-bottom: 4px;
     }
   }
+
+  // ===== TEACHER CAROUSEL =====
+
+  .teacher-slide {
+    width: 280px;
+    display: flex;
+    justify-content: center;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // 💡 đổ bóng mặc định
+    border-radius: 12px;
+    background: #fff;
+
+    // Hover để tăng hiệu ứng
+    &:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .slick-slide {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+  }
+
 }
