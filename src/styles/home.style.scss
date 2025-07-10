@@ -20,7 +20,9 @@
     padding: 8px 12px;
     text-decoration: none;
     font-weight: 500;
-    transition: all 0.3s;
+    transition: color 0.3s;
+    cursor: pointer;
+    display: inline-block;
 
     &:hover {
       color: #fff;
@@ -47,15 +49,28 @@
   }
 
   .course-card {
-    transition: all 0.3s;
-  }
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 
-  .course-image {
-    height: 180px;
-    object-fit: cover;
-  }
+    &:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+    }
 
-  .course-desc {
-    margin-bottom: 4px;
+    .ant-card-body {
+      padding: 16px;
+    }
+
+    .course-image {
+      height: 180px;
+      object-fit: cover;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+
+    .course-desc {
+      margin-bottom: 4px;
+    }
   }
 }

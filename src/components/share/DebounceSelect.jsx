@@ -10,6 +10,7 @@ export const DebounceSelect = ({
 }) => {
   const [fetching, setFetching] = useState(false);
   const [options, setOptions] = useState([]);
+  const [open, setOpen] = useState(false); 
   const fetchRef = useRef(0);
 
   const debounceFetcher = useMemo(() => {
@@ -22,31 +23,31 @@ export const DebounceSelect = ({
         if (fetchId !== fetchRef.current) return;
         setOptions(newOptions);
         setFetching(false);
+        setOpen(true); 
       });
     };
 
     return debounce(loadOptions, debounceTimeout);
   }, [fetchOptions, debounceTimeout]);
 
-  const handleFocus = () => {
-    if (options.length === 0) {
-      fetchOptions("").then((newOptions) => {
-        setOptions(newOptions);
-      });
-    }
-  };
-
   return (
     <Select
       showSearch
       labelInValue
       filterOption={false}
-      onSearch={debounceFetcher}
+      onSearch={(val) => {
+        if (val) {
+          debounceFetcher(val);
+        } else {
+          setOpen(false); 
+        }
+      }}
+      onFocus={() => setOpen(false)} 
+      open={open} 
       notFoundContent={fetching ? <Spin size="small" /> : null}
       {...props}
       value={value}
       options={options}
-      onFocus={handleFocus}
     />
   );
 };

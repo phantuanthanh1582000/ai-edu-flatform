@@ -1,17 +1,5 @@
-import axios from 'axios';
+import createInstanceAxios from './customAxios';
 
-const axiosInstance = axios.create({
-  baseURL: '', 
-  timeout: 3000,
-});
-
-axiosInstance.interceptors.response.use(
-  (res) => {
-    return res;
-  },
-  (err) => {
-    return Promise.reject(err);
-  }
-);
+const axiosInstance = createInstanceAxios(import.meta.env.VITE_BACKEND_URL);
 
 export default axiosInstance;

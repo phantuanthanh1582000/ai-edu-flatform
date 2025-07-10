@@ -3,7 +3,7 @@ import { Layout, Menu } from 'antd';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { DebounceSelect } from '@/components/share/DebounceSelect';
-import { Categories } from '@/data/mockData';
+import { Courses } from '@/data/mockData';
 import '@/styles/header.style.scss'; 
 
 const { Header } = Layout;
@@ -13,16 +13,16 @@ const HeaderComponent = () => {
   const navigate = useNavigate();
 
   const fetchCourseOptions = async (search) => {
-    return Categories
+    return Courses
       .filter((cat) => cat.name.toLowerCase().includes(search.toLowerCase()))
       .map((cat) => ({
         label: cat.name,
-        value: cat.value,
+        value: cat.id,
       }));
   };
 
   const onSelectCourse = (course) => {
-    navigate(`/courses?category=${encodeURIComponent(course.value)}`);
+    navigate(`/courses/${course.value}`); 
   };
 
   const menuItems = [

@@ -1,36 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { Row, Col, Typography, Spin, message, Dropdown, Menu } from 'antd';
-import { getProducts } from '@/services/api';
-import BannerCarousel from '@/components/share/BannerCarousel';
-import CourseCard from '@/components/share/CourseCard';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Dropdown, Typography } from 'antd';
 import { Categories } from '@/data/mockData';
+import BannerCarousel from '@/components/share/BannerCarousel';
+import { Link, useNavigate } from 'react-router-dom';
+import CategoryTabs from '@/components/share/CategoryTabs.jsx';
 import '@/styles/home.style.scss';
 
 const { Title } = Typography;
 
 const HomePage = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await getProducts();
-        if (res.data.code === 1) {
-          setProducts(res.data.data);
-        } else {
-          message.error(res.data.message || 'Không lấy được sản phẩm');
-        }
-      } catch (err) {
-        message.error('Lỗi kết nối đến máy chủ!');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const navigate = useNavigate();
 
   return (
     <div className="home-page">
@@ -38,33 +17,40 @@ const HomePage = () => {
       <div className="category-bar">
         <div className="category-links">
           {Categories.map((category) => {
-            const menu = (
-              <Menu>
-                {category.subcategories?.map((sub) => (
-                  <Menu.Item key={sub.value}>
-                    <Link to={`/courses?subcategory=${sub.value}`}>
-                      {sub.name}
-                    </Link>
-                  </Menu.Item>
-                ))}
-              </Menu>
-            );
 
-            return (
-              <Dropdown
-                key={category.value}
-                overlay={menu}
-                trigger={['hover']}
-                placement="bottom"
+          if (category.value === '') return null;
+          const hasSub = Array.isArray(category.subcategories) && category.subcategories.length > 0;
+
+          const menuItems = hasSub
+            ? category.subcategories.map((sub) => ({
+                key: sub.value,
+                label: (
+                  <Link to={`/courses?subcategory=${sub.value}`}>
+                    {sub.name}
+                  </Link>
+                ),
+              }))
+            : [];
+
+          return (
+            <Dropdown
+              key={category.value}
+              menu={{ items: menuItems }}
+              trigger={['hover']}
+              placement="bottom"
+            >
+              <Link
+                to={`/courses?category=${category.value}`}
+                className="category-link"
+                style={{ cursor: 'pointer' }}
               >
-                <Link to={`/courses?category=${category.value}`} className="category-link">
-                  {category.name}
-                </Link>
-              </Dropdown>
-            );
-          })}
+                {category.name}
+              </Link>
+            </Dropdown>
+          );
+        })}
         </div>
-      </div>
+    </div>
 
       {/* BANNER */}
       <div className="banner-wrapper">
@@ -73,25 +59,15 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* DANH SÁCH KHÓA HỌC */}
-      <Title level={2} className="course-title">
-        Danh sách khoá học Front End
-      </Title>
-
-      <Spin spinning={loading} tip="Đang tải sản phẩm...">
-        <Row gutter={[16, 16]} justify="center">
-          {products.map((course) => (
-            <Col key={course.id} xs={24} sm={12} md={8} lg={6}>
-              <CourseCard
-                name={course.name}
-                price={course.price}
-                image={course.image}
-                shortDesc={course.shortDesc}
-              />
-            </Col>
-          ))}
-        </Row>
-      </Spin>
+      {/* COURSE TABS */}
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 24 }}>
+        <div style={{ maxWidth: 1300, width: '100%' }}>
+          <Title level={2} style={{ textAlign: 'center', marginBottom: 24 }}>
+            Chương trình đào tạo theo lĩnh vực
+          </Title>
+          <CategoryTabs />
+        </div>
+      </div>
     </div>
   );
 };
