@@ -50,7 +50,7 @@ const HomePage = () => {
               ? category.subcategories.map((sub) => ({
                   key: sub.value,
                   label: (
-                    <Link to={`/courses?subcategory=${sub.value}`}>
+                    <Link to={`/find?subcategory=${sub.value}`}>
                       {sub.name}
                     </Link>
                   ),
@@ -65,7 +65,7 @@ const HomePage = () => {
                 placement="bottom"
               >
                 <Link
-                  to={`/courses?category=${category.value}`}
+                  to={`/find?category=${category.value}`}
                   className="category-link"
                 >
                   {category.name}
