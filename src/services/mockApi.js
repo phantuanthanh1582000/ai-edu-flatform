@@ -59,8 +59,10 @@ mock.onGet('/api/v1/courses').reply((config) => {
   const isAdvanced = parseBool(params.isAdvanced);
   const popular = parseBool(params.popular);
   const discountOnly = parseBool(params.discountOnly);
+  const page = parseInt(params.page) || 1;
+  const limit = parseInt(params.limit) || 12;
 
-  console.log('🔥 Mock gọi với:', { category, isAdvanced, popular, discountOnly });
+  console.log('🔥 Mock gọi với:', { category, isAdvanced, popular, discountOnly, page, limit });
 
   let filtered = Courses;
 
@@ -84,15 +86,28 @@ mock.onGet('/api/v1/courses').reply((config) => {
     filtered = filtered.filter((c) => !!c.discountPrice === discountOnly);
   }
 
+  // Tính toán phân trang
+  const total = filtered.length;
+  const start = (page - 1) * limit;
+  const end = start + limit;
+  const paginatedData = filtered.slice(start, end);
+
   return [
     200,
     {
       code: 1,
       message: 'Lấy danh sách khóa học thành công',
-      data: filtered,
+      data: paginatedData,
+      pagination: {
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit),
+      },
     },
   ];
 });
+
 
 // 🎯 Mock API lấy danh sách giảng viên
 mock.onGet('/api/v1/teachers').reply(() => {
