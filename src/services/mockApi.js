@@ -56,37 +56,55 @@ mock.onPost('/api/v1/auth/login').reply((config) => {
 mock.onGet('/api/v1/courses').reply((config) => {
   const params = config.params || {};
   const category = params.category?.toLowerCase();
+  const subcategory = params.subcategory?.toLowerCase();
   const isAdvanced = parseBool(params.isAdvanced);
   const popular = parseBool(params.popular);
   const discountOnly = parseBool(params.discountOnly);
+  const minPrice = parseInt(params.minPrice) || 0;
+  const maxPrice = parseInt(params.maxPrice) || Infinity;
   const page = parseInt(params.page) || 1;
   const limit = parseInt(params.limit) || 12;
 
-  console.log('🔥 Mock gọi với:', { category, isAdvanced, popular, discountOnly, page, limit });
+  console.log('🔥 Mock gọi với:', {
+    category,
+    subcategory,
+    isAdvanced,
+    popular,
+    discountOnly,
+    minPrice,
+    maxPrice,
+    page,
+    limit,
+  });
 
   let filtered = Courses;
 
-  // Lọc theo category
+  // Lọc theo category và subcategory
   if (category) {
     filtered = filtered.filter((c) => c.category?.toLowerCase() === category);
+    if (subcategory) {
+      filtered = filtered.filter((c) => c.subcategory?.toLowerCase() === subcategory);
+    }
   }
 
-  // Lọc theo isAdvanced
   if (isAdvanced !== null) {
     filtered = filtered.filter((c) => c.isAdvanced === isAdvanced);
   }
 
-  // Lọc theo popular
   if (popular !== null) {
     filtered = filtered.filter((c) => c.popular === popular);
   }
 
-  // Lọc theo discountOnly
   if (discountOnly !== null) {
     filtered = filtered.filter((c) => !!c.discountPrice === discountOnly);
   }
 
-  // Tính toán phân trang
+  // ✅ Lọc theo khoảng giá
+  filtered = filtered.filter((c) => {
+    const price = c.discountPrice || c.price;
+    return price >= minPrice && price <= maxPrice;
+  });
+
   const total = filtered.length;
   const start = (page - 1) * limit;
   const end = start + limit;

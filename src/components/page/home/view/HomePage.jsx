@@ -50,7 +50,7 @@ const HomePage = () => {
               ? category.subcategories.map((sub) => ({
                   key: sub.value,
                   label: (
-                    <Link to={`/find?subcategory=${sub.value}`}>
+                    <Link to={`/find?category=${category.value}&subcategory=${sub.value}`}>
                       {sub.name}
                     </Link>
                   ),
@@ -90,6 +90,7 @@ const HomePage = () => {
             title="Các khoá học ưu đãi"
             courses={discountCourses}
             showMax={4}
+            showMoreLink="/find?discountOnly=true"
           />
         </div>
       </div>
@@ -101,6 +102,7 @@ const HomePage = () => {
             title="Các khóa học phổ biến"
             courses={popularCourses}
             showMax={4}
+            showMoreLink="/find?popular=true" 
           />
         </div>
       </div>
@@ -112,6 +114,7 @@ const HomePage = () => {
             title="Các khóa học nâng cao"
             courses={advancedCourses}
             showMax={4}
+            showMoreLink="/find?isAdvanced=true"
           />
         </div>
       </div>

@@ -1,10 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Image, Badge, Divider } from 'antd';
-import { UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import {
+  UserOutlined,
+  VideoCameraOutlined,
+  HeartOutlined,
+  HeartFilled,
+  ShoppingCartOutlined,
+} from '@ant-design/icons';
 import '@/styles/home.style.scss';
 
-const CourseCard = ({ name, price, image, shortDesc, discountPrice, teacher, videoCount, isAdvanced }) => {
-  const finalPrice = discountPrice || price;
+const CourseCard = ({
+  id,
+  name,
+  price,
+  image,
+  shortDesc,
+  discountPrice,
+  teacher,
+  videoCount,
+  isAdvanced,
+}) => {
+  const [liked, setLiked] = useState(false);
+
+  const handleLikeToggle = (e) => {
+    e.stopPropagation();
+    const nextLiked = !liked;
+    setLiked(nextLiked);
+    window.messageApi?.success(
+      nextLiked
+        ? `Đã thêm vào yêu thích sản phẩm có ID: ${id}`
+        : `Đã bỏ khỏi yêu thích sản phẩm có ID: ${id}`
+    );
+  };
+
+  const handleAddToCart = (e) => {
+    e.stopPropagation();
+    window.messageApi?.success('Đã thêm vào giỏ hàng');
+  };
 
   const content = (
     <Card
@@ -52,17 +84,59 @@ const CourseCard = ({ name, price, image, shortDesc, discountPrice, teacher, vid
               <VideoCameraOutlined /> <strong>{videoCount} video</strong>
             </p>
 
-            {discountPrice ? (
-              <p>
-                <strong style={{ color: '#d4380d', marginRight: 8  }}>đ{discountPrice.toLocaleString()}</strong>
-                <span style={{ textDecoration: 'line-through', color: '#999'}}>
-                  {price.toLocaleString()}
-                </span>
-                
-              </p>
-            ) : (
-              <strong style={{ color: 'green' }}>{price.toLocaleString()}đ</strong>
-            )}
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginTop: 8,
+              }}
+            >
+              <div>
+                {discountPrice ? (
+                  <>
+                    <strong style={{ color: '#d4380d', marginRight: 8 }}>
+                      đ{discountPrice.toLocaleString()}
+                    </strong>
+                    <span
+                      style={{
+                        textDecoration: 'line-through',
+                        color: '#999',
+                        fontSize: 13,
+                      }}
+                    >
+                      {price.toLocaleString()}đ
+                    </span>
+                  </>
+                ) : (
+                  <strong style={{ color: 'green' }}>
+                    {price.toLocaleString()}đ
+                  </strong>
+                )}
+              </div>
+
+              <div style={{ display: 'flex', gap: 12, fontSize: 20 }}>
+                <div
+                  style={{ cursor: 'pointer' }}
+                  onClick={handleLikeToggle}
+                  title={liked ? 'Bỏ yêu thích' : 'Thêm vào yêu thích'}
+                >
+                  {liked ? (
+                    <HeartFilled style={{ color: 'red' }} />
+                  ) : (
+                    <HeartOutlined style={{ color: '#888' }} />
+                  )}
+                </div>
+
+                <div
+                  style={{ cursor: 'pointer' }}
+                  onClick={handleAddToCart}
+                  title="Thêm vào giỏ hàng"
+                >
+                  <ShoppingCartOutlined style={{ color: '#1890ff' }} />
+                </div>
+              </div>
+            </div>
           </>
         }
       />

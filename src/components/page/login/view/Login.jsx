@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Typography, message, Card } from 'antd';
+import { Typography, Card } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import CustomForm from '@/components/share/CustomForm';
 import { login } from '@/services/api'; 
@@ -23,14 +23,14 @@ const Login = () => {
 
           onLogin(user, token); // ✅ lưu vào context
 
-          message.success('Đăng nhập thành công!');
+          window.messageApi?.success('Đăng nhập thành công!');
           navigate('/');
         } else {
-          message.error(res.data?.message || 'Đăng nhập thất bại!');
+          window.messageApi?.error(res.data?.message || 'Đăng nhập thất bại!');
         }
       })
       .catch(() => {
-        message.error('Đăng nhập thất bại!');
+        window.messageApi?.error('Đăng nhập thất bại!');
       })
       .finally(() => {
         setLoading(false);

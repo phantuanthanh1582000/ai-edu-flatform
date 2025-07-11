@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Menu, Dropdown, notification } from 'antd';
+import { Layout, Menu, Dropdown, message } from 'antd';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ShoppingCartOutlined, UserOutlined, LogoutOutlined } from '@ant-design/icons';
 import { DebounceSelect } from '@/components/share/DebounceSelect';
@@ -32,6 +32,12 @@ const HeaderComponent = () => {
     navigate('/login');
   };
 
+  const handleCartClick = (e) => {
+    e.preventDefault();
+    window.messageApi?.warning('Vui lòng đăng nhập để sử dụng giỏ hàng!');
+    navigate('/login');
+  };
+
   const userMenu = (
     <Menu
       items={[
@@ -45,23 +51,17 @@ const HeaderComponent = () => {
     { key: '/', label: <Link to="/">Trang chủ</Link> },
     { key: '/about', label: <Link to="/about">Giới thiệu</Link> },
     {
-  key: '/cart',
-  label: user ? (
-    <Link to="/cart">
-      <ShoppingCartOutlined style={{ fontSize: 18 }} />
-    </Link>
-  ) : (
-    <Link
-      to="/login"
-      onClick={(e) => {
-        e.preventDefault();
-        navigate('/login')
-      }}
-    >
-      <ShoppingCartOutlined style={{ fontSize: 18 }} />
-    </Link>
-  ),
-},
+      key: '/cart',
+      label: user ? (
+        <Link to="/cart">
+          <ShoppingCartOutlined style={{ fontSize: 18 }} />
+        </Link>
+      ) : (
+        <a href="/login" onClick={handleCartClick}>
+          <ShoppingCartOutlined style={{ fontSize: 18 }} />
+        </a>
+      ),
+    },
     !user && {
       key: '/login',
       label: <Link to="/login">Đăng nhập/Đăng ký</Link>,

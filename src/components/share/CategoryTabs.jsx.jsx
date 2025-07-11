@@ -5,8 +5,6 @@ import { Categories } from '@/data/mockData';
 import CourseCard from './CourseCard';
 import { useNavigate } from 'react-router-dom';
 
-const { Title } = Typography;
-
 const CategoryTabs = () => {
   const [activeKey, setActiveKey] = useState('');
   const [courses, setCourses] = useState([]);
@@ -34,8 +32,13 @@ const CategoryTabs = () => {
   }, [activeKey]);
 
   const handleViewMore = () => {
-    navigate(`/find?category=${activeKey}`);
+    if (activeKey) {
+      navigate(`/find?category=${activeKey}`);
+    } else {
+      navigate('/find'); 
+    }
   };
+
 
   return (
     <Tabs
