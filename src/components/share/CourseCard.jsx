@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Image, Badge, Divider } from 'antd';
 import {
   UserOutlined,
@@ -26,11 +26,21 @@ const CourseCard = ({
     e.stopPropagation();
     const nextLiked = !liked;
     setLiked(nextLiked);
-    window.messageApi?.success(
-      nextLiked
-        ? `Đã thêm vào yêu thích sản phẩm có ID: ${id}`
-        : `Đã bỏ khỏi yêu thích sản phẩm có ID: ${id}`
-    );
+
+    const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    let updatedFavorites = [...storedFavorites];
+
+    if (nextLiked) {
+      if (!storedFavorites.includes(id)) {
+        updatedFavorites.push(id);
+      }
+      window.messageApi?.success(`Đã thêm vào yêu thích sản phẩm có ID: ${id}`);
+    } else {
+      updatedFavorites = storedFavorites.filter((favId) => favId !== id);
+      window.messageApi?.success(`Đã bỏ khỏi yêu thích sản phẩm có ID: ${id}`);
+    }
+
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   };
 
   const handleAddToCart = (e) => {
