@@ -11,3 +11,10 @@ export const getTeachers = () => {
 export const login = (data) => {
   return axiosInstance.post('/api/v1/auth/login', data);
 };
+
+export const getFavorites = (ids = []) => {
+  return axiosInstance.get('/api/v1/favorites', {
+    params: { ids },
+  });
+};
+

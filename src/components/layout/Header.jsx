@@ -1,7 +1,11 @@
 import React from 'react';
-import { Layout, Menu, Dropdown, message } from 'antd';
+import { Layout, Menu, Dropdown } from 'antd';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ShoppingCartOutlined, UserOutlined, LogoutOutlined } from '@ant-design/icons';
+import {
+  ShoppingCartOutlined,
+  UserOutlined,
+  LogoutOutlined,
+} from '@ant-design/icons';
 import { DebounceSelect } from '@/components/share/DebounceSelect';
 import { Courses } from '@/data/mockData';
 import { useAuth } from '@/global/AuthContext';
@@ -12,15 +16,15 @@ const { Header } = Layout;
 const HeaderComponent = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { user, onLogout } = useAuth(); 
+  const { user, onLogout } = useAuth();
 
   const fetchCourseOptions = async (search) => {
-    return Courses
-      .filter((cat) => cat.name.toLowerCase().includes(search.toLowerCase()))
-      .map((cat) => ({
-        label: cat.name,
-        value: cat.id,
-      }));
+    return Courses.filter((cat) =>
+      cat.name.toLowerCase().includes(search.toLowerCase())
+    ).map((cat) => ({
+      label: cat.name,
+      value: cat.id,
+    }));
   };
 
   const onSelectCourse = (course) => {
@@ -28,7 +32,7 @@ const HeaderComponent = () => {
   };
 
   const handleLogout = () => {
-    onLogout(); 
+    onLogout();
     navigate('/login');
   };
 
@@ -38,18 +42,38 @@ const HeaderComponent = () => {
     navigate('/login');
   };
 
-  const userMenu = (
-    <Menu
-      items={[
-        { key: 'profile', label: <span>👤 {user?.name}</span>, icon: <UserOutlined /> },
-        { key: 'logout', label: <span onClick={handleLogout}>Đăng xuất</span>, icon: <LogoutOutlined /> },
-      ]}
-    />
-  );
+  // ✅ sửa đổi cho Ant Design v5: sử dụng `menu={{ items, onClick }}`
+  const userMenu = {
+    items: [
+      {
+        key: 'profile',
+        label: 'Trang cá nhân',
+        icon: <UserOutlined />,
+      },
+      {
+        key: 'logout',
+        label: 'Đăng xuất',
+        icon: <LogoutOutlined />,
+      },
+    ],
+    onClick: ({ key }) => {
+      if (key === 'profile') {
+        navigate('/profile');
+      } else if (key === 'logout') {
+        handleLogout();
+      }
+    },
+  };
 
   const menuItems = [
-    { key: '/', label: <Link to="/">Trang chủ</Link> },
-    { key: '/about', label: <Link to="/about">Giới thiệu</Link> },
+    {
+      key: '/',
+      label: <Link to="/">Trang chủ</Link>,
+    },
+    {
+      key: '/about',
+      label: <Link to="/about">Giới thiệu</Link>,
+    },
     {
       key: '/cart',
       label: user ? (
@@ -69,7 +93,7 @@ const HeaderComponent = () => {
     user && {
       key: 'user',
       label: (
-        <Dropdown overlay={userMenu} placement="bottomRight" arrow>
+        <Dropdown menu={userMenu} placement="bottomRight" arrow>
           <span style={{ cursor: 'pointer' }}>👋 {user.name}</span>
         </Dropdown>
       ),

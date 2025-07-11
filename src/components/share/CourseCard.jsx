@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Card, Image, Badge, Divider } from 'antd';
 import {
   UserOutlined,
@@ -7,7 +7,10 @@ import {
   HeartFilled,
   ShoppingCartOutlined,
 } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 import '@/styles/home.style.scss';
+import FormatUtils from '@/ulti/Format';
+import { useAuth } from '@/global/AuthContext';
 
 const CourseCard = ({
   id,
@@ -21,9 +24,18 @@ const CourseCard = ({
   isAdvanced,
 }) => {
   const [liked, setLiked] = useState(false);
+  const { user, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   const handleLikeToggle = (e) => {
     e.stopPropagation();
+
+    if (!isAuthenticated) {
+      window.messageApi?.warning('Vui lòng đăng nhập để thêm vào yêu thích');
+      navigate('/login');
+      return;
+    }
+
     const nextLiked = !liked;
     setLiked(nextLiked);
 
@@ -45,6 +57,13 @@ const CourseCard = ({
 
   const handleAddToCart = (e) => {
     e.stopPropagation();
+
+    if (!isAuthenticated) {
+      window.messageApi?.warning('Vui lòng đăng nhập để thêm vào giỏ hàng');
+      navigate('/login');
+      return;
+    }
+
     window.messageApi?.success('Đã thêm vào giỏ hàng');
   };
 
@@ -106,7 +125,7 @@ const CourseCard = ({
                 {discountPrice ? (
                   <>
                     <strong style={{ color: '#d4380d', marginRight: 8 }}>
-                      đ{discountPrice.toLocaleString()}
+                      {FormatUtils.vndPrice(discountPrice)}
                     </strong>
                     <span
                       style={{
@@ -115,12 +134,12 @@ const CourseCard = ({
                         fontSize: 13,
                       }}
                     >
-                      {price.toLocaleString()}đ
+                      {FormatUtils.vndPrice(price)}
                     </span>
                   </>
                 ) : (
                   <strong style={{ color: 'green' }}>
-                    {price.toLocaleString()}đ
+                    {FormatUtils.vndPrice(price)}
                   </strong>
                 )}
               </div>

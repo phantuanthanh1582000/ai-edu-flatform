@@ -139,3 +139,18 @@ mock.onGet('/api/v1/teachers').reply(() => {
     },
   ];
 });
+
+mock.onGet('/api/v1/favorites').reply((config) => {
+  const ids = config.params?.ids || [];
+
+  const matched = Courses.filter((course) => ids.includes(course.id));
+
+  return [
+    200,
+    {
+      code: 1,
+      message: 'Lấy danh sách yêu thích thành công',
+      data: matched,
+    },
+  ];
+});
