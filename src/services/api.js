@@ -12,9 +12,23 @@ export const login = (data) => {
   return axiosInstance.post('/api/v1/auth/login', data);
 };
 
-export const getFavorites = (ids = []) => {
+export const getFavorites = (ids, page = 1, limit = 8) => {
   return axiosInstance.get('/api/v1/favorites', {
-    params: { ids },
+    params: {
+      ids,
+      page,
+      limit,
+    },
   });
 };
+
+export const getCartItems = (ids) => {
+  return axiosInstance.get('/api/v1/cart', {
+    params: {
+      ids,
+    },
+  });
+};
+
+
 

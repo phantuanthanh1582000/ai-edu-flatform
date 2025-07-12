@@ -19,9 +19,9 @@ const Login = () => {
       .then((res) => {
         console.log('res', res);
         if (res.data?.code === 1) {
-          const { user, token } = res.data.data; // ✅ lấy đúng dữ liệu từ API
+          const { user, token } = res.data.data; 
 
-          onLogin(user, token); // ✅ lưu vào context
+          onLogin(user, token); 
 
           window.messageApi?.success('Đăng nhập thành công!');
           navigate('/');

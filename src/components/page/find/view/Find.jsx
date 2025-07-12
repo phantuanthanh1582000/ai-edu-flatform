@@ -7,7 +7,6 @@ import CourseCard from '@/components/share/CourseCard';
 import CourseFilter from '@/components/page/find/modal/CourseFilter';
 import '@/styles/find.style.scss';
 
-// ✅ Hàm parseBool đúng chuẩn
 const parseBool = (value) => {
   if (value === 'true') return true;
   if (value === 'false') return false;
@@ -27,20 +26,21 @@ const FindPage = () => {
   });
 
   useEffect(() => {
-    const query = new URLSearchParams(location.search);
-    const initialFilters = {
-      page: parseInt(query.get('page')) || 1,
-      limit: parseInt(query.get('limit')) || 12,
-      category: query.get('category') || undefined,
-      subcategory: query.get('subcategory') || undefined,
-      isAdvanced: parseBool(query.get('isAdvanced')),
-      popular: parseBool(query.get('popular')),
-      discountOnly: parseBool(query.get('discountOnly')),
-      minPrice: query.get('minPrice') ? parseInt(query.get('minPrice')) : undefined,
-      maxPrice: query.get('maxPrice') ? parseInt(query.get('maxPrice')) : undefined,
-    };
-    setFilters(initialFilters);
-  }, [location.search]);
+  const query = new URLSearchParams(location.search);
+  const initialFilters = {
+    page: parseInt(query.get('page')) || 1,
+    limit: parseInt(query.get('limit')) || 12,
+    category: query.get('category') || undefined,
+    subcategory: query.get('subcategory') || undefined,
+    isAdvanced: parseBool(query.get('isAdvanced')),
+    popular: parseBool(query.get('popular')),
+    discountOnly: parseBool(query.get('discountOnly')),
+    minPrice: query.get('minPrice') ? parseInt(query.get('minPrice')) : undefined,
+    maxPrice: query.get('maxPrice') ? parseInt(query.get('maxPrice')) : undefined,
+    suggested: parseBool(query.get('suggested')), 
+  };
+  setFilters(initialFilters);
+}, [location.search]);
 
   useEffect(() => {
     console.log('[FILTER CHANGED]', filters);

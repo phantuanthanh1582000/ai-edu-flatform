@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Dropdown, Typography, Image, Row, Col, Button, } from 'antd';
+import { Dropdown, Typography, Row, Col, Button, Tooltip } from 'antd';
 import { Categories } from '@/data/mockData';
 import BannerCarousel from '@/components/share/BannerCarousel';
 import TeacherCarousel from '@/components/share/TeacherCarousel';
+import ChatBotUI from '@/components/share/ChatBotUI';
 import { Link } from 'react-router-dom';
 import CategoryTabs from '@/components/share/CategoryTabs.jsx';
 import SectionCourse from '@/components/share/SectionCourse';
@@ -12,10 +13,10 @@ import { getCourses } from '@/services/api';
 const { Title } = Typography;
 
 const HomePage = () => {
-
   const [advancedCourses, setAdvancedCourses] = useState([]);
   const [popularCourses, setPopularCourses] = useState([]);
   const [discountCourses, setDiscountCourses] = useState([]);
+  const [chatOpen, setChatOpen] = useState(false);
 
   useEffect(() => {
     getCourses({ isAdvanced: true }).then((res) => {
@@ -64,10 +65,7 @@ const HomePage = () => {
                 trigger={['hover']}
                 placement="bottom"
               >
-                <Link
-                  to={`/find?category=${category.value}`}
-                  className="category-link"
-                >
+                <Link to={`/find?category=${category.value}`} className="category-link">
                   {category.name}
                 </Link>
               </Dropdown>
@@ -102,7 +100,7 @@ const HomePage = () => {
             title="Các khóa học phổ biến"
             courses={popularCourses}
             showMax={4}
-            showMoreLink="/find?popular=true" 
+            showMoreLink="/find?popular=true"
           />
         </div>
       </div>
@@ -139,64 +137,85 @@ const HomePage = () => {
         </div>
       </div>
 
+      {/* FOOTER SECTION */}
       <div
-      style={{
-        background: 'linear-gradient(90deg, #FFD700, #1890FF)',
-        padding: '40px 0',
-      }}
-    >
-      <div
-  style={{
-    background: 'linear-gradient(90deg, #FFD700, #1890FF)',
-    padding: '60px 0',
-  }}
->
-  <div
-    style={{
-      maxWidth: 1300,
-      margin: '0 auto',
-      padding: '0 16px',
-    }}
-  >
-    <Row align="middle" gutter={[32, 32]}>
-      
-      <Col xs={24} md={12}>
-        <div style={{ color: '#fff' }}>
-          <Title level={2} style={{ color: '#fff', marginBottom: 12 }}>
-            Trở thành giảng viên tại PTT Academy
-          </Title>
-          <p style={{ fontSize: 16, lineHeight: 1.6, marginBottom: 24 }}>
-            Chia sẻ kiến thức, truyền cảm hứng cho hàng ngàn học viên và phát triển sự nghiệp giảng dạy của bạn cùng chúng tôi.
-          </p>
+        style={{
+          background: 'linear-gradient(90deg, #FFD700, #1890FF)',
+          padding: '60px 0',
+        }}
+      >
+        <div
+          style={{
+            maxWidth: 1300,
+            margin: '0 auto',
+            padding: '0 16px',
+          }}
+        >
+          <Row align="middle" gutter={[32, 32]}>
+            <Col xs={24} md={12}>
+              <div style={{ color: '#fff' }}>
+                <Title level={2} style={{ color: '#fff', marginBottom: 12 }}>
+                  Trở thành giảng viên tại PTT Academy
+                </Title>
+                <p style={{ fontSize: 16, lineHeight: 1.6, marginBottom: 24 }}>
+                  Chia sẻ kiến thức, truyền cảm hứng cho hàng ngàn học viên và phát triển sự nghiệp giảng dạy của bạn cùng chúng tôi.
+                </p>
+                <Button
+                  type="default"
+                  size="large"
+                  style={{
+                    backgroundColor: '#fff',
+                    color: '#1890FF',
+                    fontWeight: 600,
+                    borderRadius: 24,
+                    padding: '10px 32px',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                  }}
+                >
+                  Đăng ký ngay
+                </Button>
+              </div>
+            </Col>
+
+            <Col xs={24} md={12} style={{ textAlign: 'center' }}>
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/219/219970.png"
+                alt="Become a Teacher"
+                style={{ maxWidth: '100%', height: 'auto', maxHeight: 280 }}
+              />
+            </Col>
+          </Row>
+        </div>
+      </div>
+
+      <Link to="/find?suggested=true">
+        <Tooltip title="Gợi ý sản phẩm phù hợp" placement="leftTop">
           <Button
-            type="default"
+            type="primary"
+            shape="circle"
             size="large"
             style={{
-              backgroundColor: '#fff',
-              color: '#1890FF',
-              fontWeight: 600,
-              borderRadius: 24,
-              padding: '10px 32px',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+              position: 'fixed',
+              bottom: 110,
+              right: 34,
+              width: 56,
+              height: 56,
+              backgroundColor: '#722ed1',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+              zIndex: 1000,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
           >
-            Đăng ký ngay
+            🎁
           </Button>
-        </div>
-      </Col>
+        </Tooltip>
+      </Link>
 
-      <Col xs={24} md={12} style={{ textAlign: 'center' }}>
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/219/219970.png"
-          alt="Become a Teacher"
-          style={{ maxWidth: '100%', height: 'auto', maxHeight: 280 }}
-        />
-      </Col>
-    </Row>
-  </div>
-</div>
+      
 
-    </div>
+      <ChatBotUI />
 
     </div>
   );

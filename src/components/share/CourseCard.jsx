@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Image, Badge, Divider } from 'antd';
 import {
   UserOutlined,
@@ -22,8 +22,10 @@ const CourseCard = ({
   teacher,
   videoCount,
   isAdvanced,
+  isFavorite = false, 
+  onUnfavorite = null, 
 }) => {
-  const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState(isFavorite); 
   const { user, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
@@ -46,26 +48,52 @@ const CourseCard = ({
       if (!storedFavorites.includes(id)) {
         updatedFavorites.push(id);
       }
+      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
       window.messageApi?.success(`Đã thêm vào yêu thích sản phẩm có ID: ${id}`);
     } else {
       updatedFavorites = storedFavorites.filter((favId) => favId !== id);
+      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
       window.messageApi?.success(`Đã bỏ khỏi yêu thích sản phẩm có ID: ${id}`);
-    }
 
-    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+      if (onUnfavorite) {
+        onUnfavorite();
+      }
+    }
   };
+
 
   const handleAddToCart = (e) => {
-    e.stopPropagation();
+  e.stopPropagation();
 
-    if (!isAuthenticated) {
-      window.messageApi?.warning('Vui lòng đăng nhập để thêm vào giỏ hàng');
-      navigate('/login');
-      return;
-    }
+  if (!isAuthenticated) {
+    window.messageApi?.warning('Vui lòng đăng nhập để thêm vào giỏ hàng');
+    navigate('/login');
+    return;
+  }
 
-    window.messageApi?.success('Đã thêm vào giỏ hàng');
-  };
+  const storedCart = JSON.parse(localStorage.getItem('cart') || '[]');
+
+  const existingIndex = storedCart.findIndex((item) => item.id === id);
+
+  if (existingIndex >= 0) {
+    // Nếu đã có, tăng số lượng
+    storedCart[existingIndex].quantity += 1;
+  } else {
+    // Nếu chưa có, thêm mới
+    storedCart.push({
+      id,
+      name,
+      image,
+      price: discountPrice || price,
+      quantity: 1,
+      shortDesc,
+    });
+  }
+
+  localStorage.setItem('cart', JSON.stringify(storedCart));
+  window.messageApi?.success('Đã thêm vào giỏ hàng');
+};
+
 
   const content = (
     <Card

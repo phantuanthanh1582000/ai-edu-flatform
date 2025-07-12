@@ -25,8 +25,9 @@ const ProfilePage = () => {
     <div style={{ padding: 24 }}>
       <Title level={2}>👤 Trang cá nhân</Title>
       <Row gutter={24}>
-        <Col xs={24} md={6}>
+        <Col xs={24} md={4}>
           <Menu
+            className="custom-profile-menu"
             mode="inline"
             selectedKeys={[selectedKey]}
             onClick={({ key }) => setSelectedKey(key)}
@@ -37,7 +38,7 @@ const ProfilePage = () => {
             ]}
           />
         </Col>
-        <Col xs={24} md={18}>
+        <Col xs={24} md={20}>
           {tabComponents[selectedKey]}
         </Col>
       </Row>
