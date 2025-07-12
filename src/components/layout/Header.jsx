@@ -1,15 +1,15 @@
-import React from 'react';
-import { Layout, Menu, Dropdown } from 'antd';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React from "react";
+import { Layout, Menu, Dropdown } from "antd";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   ShoppingCartOutlined,
   UserOutlined,
   LogoutOutlined,
-} from '@ant-design/icons';
-import { DebounceSelect } from '@/components/share/DebounceSelect';
-import { Courses } from '@/data/mockData';
-import { useAuth } from '@/global/AuthContext';
-import '@/styles/header.style.scss';
+} from "@ant-design/icons";
+import { DebounceSelect } from "@/components/share/DebounceSelect";
+import { Courses } from "@/data/mockData";
+import { useAuth } from "@/global/AuthContext";
+import "@/styles/header.style.scss";
 
 const { Header } = Layout;
 
@@ -33,33 +33,32 @@ const HeaderComponent = () => {
 
   const handleLogout = () => {
     onLogout();
-    navigate('/login');
+    navigate("/login");
   };
 
   const handleCartClick = (e) => {
     e.preventDefault();
-    window.messageApi?.warning('Vui lòng đăng nhập để sử dụng giỏ hàng!');
-    navigate('/login');
+    window.messageApi?.warning("Vui lòng đăng nhập để sử dụng giỏ hàng!");
+    navigate("/login");
   };
 
-  // ✅ sửa đổi cho Ant Design v5: sử dụng `menu={{ items, onClick }}`
   const userMenu = {
     items: [
       {
-        key: 'profile',
-        label: 'Trang cá nhân',
+        key: "profile",
+        label: "Trang cá nhân",
         icon: <UserOutlined />,
       },
       {
-        key: 'logout',
-        label: 'Đăng xuất',
+        key: "logout",
+        label: "Đăng xuất",
         icon: <LogoutOutlined />,
       },
     ],
     onClick: ({ key }) => {
-      if (key === 'profile') {
-        navigate('/profile');
-      } else if (key === 'logout') {
+      if (key === "profile") {
+        navigate("/profile");
+      } else if (key === "logout") {
         handleLogout();
       }
     },
@@ -67,15 +66,15 @@ const HeaderComponent = () => {
 
   const menuItems = [
     {
-      key: '/',
+      key: "/",
       label: <Link to="/">Trang chủ</Link>,
     },
     {
-      key: '/about',
+      key: "/about",
       label: <Link to="/about">Giới thiệu</Link>,
     },
     {
-      key: '/cart',
+      key: "/cart",
       label: user ? (
         <Link to="/cart">
           <ShoppingCartOutlined style={{ fontSize: 18 }} />
@@ -87,14 +86,14 @@ const HeaderComponent = () => {
       ),
     },
     !user && {
-      key: '/login',
+      key: "/login",
       label: <Link to="/login">Đăng nhập/Đăng ký</Link>,
     },
     user && {
-      key: 'user',
+      key: "user",
       label: (
         <Dropdown menu={userMenu} placement="bottomRight" arrow>
-          <span style={{ cursor: 'pointer' }}>👋 {user.name}</span>
+          <span style={{ cursor: "pointer" }}>👋 {user.name}</span>
         </Dropdown>
       ),
     },

@@ -41,13 +41,12 @@ const FavoriteList = () => {
   const updatedFavs = currentFavs.filter((id) => id !== idToRemove);
   localStorage.setItem('favorites', JSON.stringify(updatedFavs));
 
-  // Nếu danh sách còn nhiều hơn 1 item thì vẫn giữ trang hiện tại
-  // Nếu xóa item cuối cùng của trang thì về trang trước
+ 
   const isLastItemOnPage = favorites.length === 1 && currentPage > 1;
   const newPage = isLastItemOnPage ? currentPage - 1 : currentPage;
 
-  setCurrentPage(newPage); // cập nhật trang
-  fetchFavorites(newPage); // gọi lại API
+  setCurrentPage(newPage); 
+  fetchFavorites(newPage); 
 };
 
 

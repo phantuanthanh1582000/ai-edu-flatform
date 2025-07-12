@@ -1,17 +1,46 @@
-// src/components/CustomForm.jsx
-import React from 'react';
-import { Form, Input, Button } from 'antd';
+import React from "react";
+import { Form, Input, Button, Select } from "antd";
 
-const CustomForm = ({ fields, onFinish, loading, submitText = 'Submit' }) => {
+const { Option } = Select;
+
+const CustomForm = ({
+  fields,
+  onFinish,
+  loading,
+  submitText = "Submit",
+  initialValues,
+}) => {
+  const renderField = (field) => {
+    const { type = "text", label, placeholder, options } = field;
+
+    switch (type) {
+      case "password":
+        return <Input.Password placeholder={placeholder || label} />;
+      case "select":
+        return (
+          <Select placeholder={placeholder || `Chọn ${label.toLowerCase()}`}>
+            {options?.map(({ label, value }) => (
+              <Option key={value} value={value}>
+                {label}
+              </Option>
+            ))}
+          </Select>
+        );
+      default:
+        return <Input type={type} placeholder={placeholder || label} />;
+    }
+  };
+
   return (
-    <Form layout="vertical" onFinish={onFinish}>
-      {fields.map(({ name, label, rules, type = 'text', placeholder }) => (
-        <Form.Item key={name} name={name} label={label} rules={rules}>
-          {type === 'password' ? (
-            <Input.Password placeholder={placeholder || label} />
-          ) : (
-            <Input type={type} placeholder={placeholder || label} />
-          )}
+    <Form layout="vertical" onFinish={onFinish} initialValues={initialValues}>
+      {fields.map((field) => (
+        <Form.Item
+          key={field.name}
+          name={field.name}
+          label={field.label}
+          rules={field.rules}
+        >
+          {renderField(field)}
         </Form.Item>
       ))}
 
