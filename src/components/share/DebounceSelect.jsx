@@ -6,11 +6,12 @@ export const DebounceSelect = ({
   fetchOptions,
   debounceTimeout = 800,
   value,
+  onChange,
   ...props
 }) => {
   const [fetching, setFetching] = useState(false);
   const [options, setOptions] = useState([]);
-  const [open, setOpen] = useState(false); 
+  const [open, setOpen] = useState(false);
   const fetchRef = useRef(0);
 
   const debounceFetcher = useMemo(() => {
@@ -23,12 +24,17 @@ export const DebounceSelect = ({
         if (fetchId !== fetchRef.current) return;
         setOptions(newOptions);
         setFetching(false);
-        setOpen(true); 
+        setOpen(true);
       });
     };
 
     return debounce(loadOptions, debounceTimeout);
   }, [fetchOptions, debounceTimeout]);
+
+  const handleChange = (newValue) => {
+    setOpen(false); 
+    onChange?.(newValue); 
+  };
 
   return (
     <Select
@@ -39,15 +45,16 @@ export const DebounceSelect = ({
         if (val) {
           debounceFetcher(val);
         } else {
-          setOpen(false); 
+          setOpen(false);
         }
       }}
-      onFocus={() => setOpen(false)} 
-      open={open} 
+      onFocus={() => setOpen(false)}
+      open={open}
+      onChange={handleChange} 
       notFoundContent={fetching ? <Spin size="small" /> : null}
-      {...props}
-      value={value}
       options={options}
+      value={value}
+      {...props}
     />
   );
 };

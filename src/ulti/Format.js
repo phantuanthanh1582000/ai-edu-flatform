@@ -1,32 +1,36 @@
 import dayjs from "dayjs";
 
 const FormatUtils = {
-  vndPrice: (value: any) => {
+  vndPrice: (value) => {
     const validValue =
       isNaN(value) || value === null || value === undefined ? 0 : +value;
     return `${new Intl.NumberFormat().format(validValue)} VNĐ`;
   },
-  formatDate: (date: Date | undefined) => {
+
+  formatDate: (date) => {
     const validDate = dayjs(date).isValid() ? dayjs(date) : dayjs();
     return validDate.format("DD/MM/YYYY");
   },
-  formatDateYear: (date: Date | undefined) => {
+
+  formatDateYear: (date) => {
     const validDate = dayjs(date).isValid() ? dayjs(date) : dayjs();
     return validDate.format("DD/MM/YYYY");
   },
-  formatDateTime: (date: Date | undefined) => {
+
+  formatDateTime: (date) => {
     const validDate = dayjs(date).isValid() ? dayjs(date) : dayjs();
     return validDate.format("DD/MM - HH:mm:ss");
   },
-  formatFullDateTime: (date: Date | undefined) => {
+
+  formatFullDateTime: (date) => {
     const validDate = dayjs(date).isValid() ? dayjs(date) : dayjs();
     return validDate.format("DD/MM/YYYY - HH:mm:ss");
   },
-  formatHour: (date: Date | undefined) => {
+
+  formatHour: (date) => {
     const validDate = dayjs(date).isValid() ? dayjs(date) : dayjs();
     return validDate.format("HH");
   },
 };
 
 export default FormatUtils;
-

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Layout, Menu, Dropdown } from "antd";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
@@ -18,6 +18,8 @@ const HeaderComponent = () => {
   const navigate = useNavigate();
   const { user, onLogout } = useAuth();
 
+  const [selectedCourse, setSelectedCourse] = useState(null);
+
   const fetchCourseOptions = async (search) => {
     return Courses.filter((cat) =>
       cat.name.toLowerCase().includes(search.toLowerCase())
@@ -28,7 +30,8 @@ const HeaderComponent = () => {
   };
 
   const onSelectCourse = (course) => {
-    navigate(`/courses/${course.value}`);
+    setSelectedCourse(null);
+    navigate("/coursedetail", { state: { courseId: course.value } });
   };
 
   const handleLogout = () => {
@@ -109,6 +112,7 @@ const HeaderComponent = () => {
           placeholder="Tìm khoá học..."
           fetchOptions={fetchCourseOptions}
           onChange={onSelectCourse}
+          value={selectedCourse}
           style={{ width: 500, height: 40 }}
         />
       </div>

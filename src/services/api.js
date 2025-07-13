@@ -1,19 +1,19 @@
-import axiosInstance from './axiosInstance';
+import axiosInstance from "./axiosInstance";
 
 export const getCourses = (params = {}) => {
-  return axiosInstance.get('/api/v1/courses', { params });
+  return axiosInstance.get("/api/v1/courses", { params });
 };
 
 export const getTeachers = () => {
-  return axiosInstance.get('/api/v1/teachers');
+  return axiosInstance.get("/api/v1/teachers");
 };
 
 export const login = (data) => {
-  return axiosInstance.post('/api/v1/auth/login', data);
+  return axiosInstance.post("/api/v1/auth/login", data);
 };
 
 export const getFavorites = (ids, page = 1, limit = 8) => {
-  return axiosInstance.get('/api/v1/favorites', {
+  return axiosInstance.get("/api/v1/favorites", {
     params: {
       ids,
       page,
@@ -23,12 +23,15 @@ export const getFavorites = (ids, page = 1, limit = 8) => {
 };
 
 export const getCartItems = (ids) => {
-  return axiosInstance.get('/api/v1/cart', {
+  return axiosInstance.get("/api/v1/cart", {
     params: {
       ids,
     },
   });
 };
 
-
-
+export const getCourseDetail = (id) => {
+  return axiosInstance.get("/api/v1/detail", {
+    params: { id },
+  });
+};

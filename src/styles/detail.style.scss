@@ -1,0 +1,91 @@
+.sumary-course-detail {
+  padding: 30px;
+  background-color: rgb(0, 53, 85);
+  color: white;
+
+  .ant-typography,
+  .ant-tag,
+  .ant-rate,
+  .ant-table,
+  td,
+  strong {
+    color: white;
+  }
+
+  .ant-tag {
+    background-color: #d3adf7;
+    color: #391085;
+  }
+
+  .ant-typography-delete {
+    color: #ffccc7 !important;
+  }
+
+  .popular-badge {
+    background-color: #ff4d4f;
+    color: white;
+    padding: 2px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 4px;
+    animation: pulse 1.2s infinite;
+    box-shadow: 0 0 0 rgba(255, 77, 79, 0.7);
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(255, 77, 79, 0.7);
+    }
+    70% {
+      transform: scale(1.05);
+      box-shadow: 0 0 0 8px rgba(255, 77, 79, 0);
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(255, 77, 79, 0);
+    }
+  }
+
+  .course-info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+
+    td {
+      padding: 8px 12px;
+      vertical-align: top;
+    }
+
+    td:first-child {
+      width: 120px;
+      font-weight: 600;
+    }
+  }
+}
+
+.course-full-description {
+  ul {
+    list-style: none;
+    padding-left: 24px;
+
+    li {
+      position: relative;
+      padding-left: 28px !important;
+      margin-bottom: 8px;
+      font-size: 18px;
+      line-height: 2;
+
+      &::before {
+        content: "✔";
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: #52c41a; // màu xanh lá
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 1;
+      }
+    }
+  }
+}
