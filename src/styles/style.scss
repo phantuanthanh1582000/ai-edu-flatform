@@ -4,4 +4,12 @@
   box-sizing: border-box;
 }
 
+.section-wrapper {
+  display: flex;
+  justify-content: center;
 
+  .section-content {
+    max-width: 1300px;
+    width: 100%;
+  }
+}

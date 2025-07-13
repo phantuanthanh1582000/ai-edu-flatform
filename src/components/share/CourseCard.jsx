@@ -30,6 +30,20 @@ const CourseCard = ({
   const { user, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
+  const handleCardClick = () => {
+    let viewedIds = JSON.parse(localStorage.getItem("viewedCourses") || "[]");
+
+    viewedIds = viewedIds.filter((itemId) => itemId !== id);
+
+    viewedIds.unshift(id);
+
+    if (viewedIds.length > 10) viewedIds = viewedIds.slice(0, 10);
+
+    localStorage.setItem("viewedCourses", JSON.stringify(viewedIds));
+
+    navigate("/coursedetail", { state: { courseId: id } });
+  };
+
   const handleLikeToggle = (e) => {
     e.stopPropagation();
     if (!isAuthenticated) {
@@ -106,6 +120,7 @@ const CourseCard = ({
           }}
         />
       }
+      onClick={handleCardClick}
     >
       <Card.Meta
         title={<strong>{name}</strong>}

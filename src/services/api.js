@@ -35,3 +35,9 @@ export const getCourseDetail = (id) => {
     params: { id },
   });
 };
+
+export const getCoursesByIds = (ids) => {
+  return axiosInstance.get("/api/v1/courses/by-ids", {
+    params: { ids },
+  });
+};

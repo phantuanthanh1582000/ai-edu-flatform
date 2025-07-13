@@ -26,6 +26,13 @@ const CustomForm = ({
             ))}
           </Select>
         );
+      case "textarea":
+        return (
+          <Input.TextArea
+            placeholder={placeholder || label}
+            autoSize={{ minRows: 4, maxRows: 8 }}
+          />
+        );
       default:
         return <Input type={type} placeholder={placeholder || label} />;
     }

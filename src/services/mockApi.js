@@ -219,3 +219,20 @@ mock.onGet("/api/v1/detail").reply((config) => {
     },
   ];
 });
+
+mock.onGet("/api/v1/courses/by-ids").reply((config) => {
+  // Lấy danh sách id từ query param dạng mảng ids[]
+  const ids = config.params?.ids || [];
+
+  // Lọc ra danh sách khóa học có id nằm trong mảng ids
+  const matched = Courses.filter((course) => ids.includes(course.id));
+
+  return [
+    200,
+    {
+      code: 1,
+      message: "Lấy danh sách khóa học theo ids thành công",
+      data: matched,
+    },
+  ];
+});
