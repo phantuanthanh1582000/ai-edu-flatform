@@ -24,6 +24,8 @@ const HeaderComponent = () => {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [openDrawer, setOpenDrawer] = useState(false);
 
+  const isMobile = !screens.lg;
+
   const handleNavigate = (path) => {
     navigate(path);
     setOpenDrawer(false);
@@ -75,8 +77,6 @@ const HeaderComponent = () => {
   };
 
   const getMenuItems = () => {
-    const isMobile = !screens.md;
-
     return [
       {
         key: "/",
@@ -115,7 +115,7 @@ const HeaderComponent = () => {
         ),
       },
       user &&
-        (screens.md
+        (!isMobile
           ? {
               key: "user",
               label: (
@@ -133,7 +133,7 @@ const HeaderComponent = () => {
               ),
             }),
       user &&
-        !screens.md && {
+        isMobile && {
           key: "logout",
           label: <span onClick={handleLogout}>🚪 Đăng xuất</span>,
         },
@@ -155,7 +155,7 @@ const HeaderComponent = () => {
         />
       </div>
 
-      {screens.md ? (
+      {!isMobile ? (
         <Menu
           theme="light"
           mode="horizontal"

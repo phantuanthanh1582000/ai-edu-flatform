@@ -64,7 +64,6 @@ const CourseReviewForm = ({ courseId }) => {
         className="course-review"
         style={{
           background: "transparent",
-          marginTop: 30,
           border: "1px solid black",
           padding: 32,
         }}

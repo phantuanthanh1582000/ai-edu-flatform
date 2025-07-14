@@ -116,20 +116,24 @@ const CourseCard = ({
             <p className="course-desc">{shortDesc}</p>
             <Divider style={{ margin: "8px 0" }} />
             <p className="meta-info">
-              <UserOutlined /> <strong>{teacher}</strong> &nbsp;&nbsp;
-              <VideoCameraOutlined /> <strong>{videoCount} video</strong>
+              <span style={{ marginRight: 8 }}>
+                <UserOutlined /> <strong>{teacher}</strong>
+              </span>
+              <span>
+                <VideoCameraOutlined /> <strong>{videoCount} video</strong>
+              </span>
             </p>
             <Rate disabled allowHalf defaultValue={rating} />
             <div className="price-action">
               <div className="price">
                 {discountPrice ? (
                   <>
-                    <strong className="discount-price">
-                      {FormatUtils.vndPrice(discountPrice)}
-                    </strong>
                     <span className="original-price">
                       {FormatUtils.vndPrice(price)}
                     </span>
+                    <strong className="discount-price">
+                      {FormatUtils.vndPrice(discountPrice)}
+                    </strong>
                   </>
                 ) : (
                   <strong className="full-price">

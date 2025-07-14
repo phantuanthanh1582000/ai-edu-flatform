@@ -4,7 +4,7 @@ const FormatUtils = {
   vndPrice: (value) => {
     const validValue =
       isNaN(value) || value === null || value === undefined ? 0 : +value;
-    return `${new Intl.NumberFormat().format(validValue)} VNĐ`;
+    return `${new Intl.NumberFormat().format(validValue)} đ`;
   },
 
   formatDate: (date) => {

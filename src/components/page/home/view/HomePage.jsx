@@ -66,7 +66,7 @@ const HomePage = () => {
       </div>
 
       {/* ƯU ĐÃI */}
-      <div className="section-wrapper mt-24">
+      <div className="section-wrapper">
         <div className="section-content">
           <SectionCourse
             title="Các khoá học ưu đãi"
@@ -78,7 +78,7 @@ const HomePage = () => {
       </div>
 
       {/* PHỔ BIẾN */}
-      <div className="section-wrapper mt-24">
+      <div className="section-wrapper">
         <div className="section-content">
           <SectionCourse
             title="Các khóa học phổ biến"
@@ -90,7 +90,7 @@ const HomePage = () => {
       </div>
 
       {/* NÂNG CAO */}
-      <div className="section-wrapper mt-24">
+      <div className="section-wrapper">
         <div className="section-content">
           <SectionCourse
             title="Các khóa học nâng cao"
@@ -102,7 +102,7 @@ const HomePage = () => {
       </div>
 
       {/* TABS */}
-      <div className="section-wrapper mt-24">
+      <div className="section-wrapper">
         <div className="section-content">
           <Title level={2} className="section-title">
             Chương trình đào tạo theo lĩnh vực
@@ -113,7 +113,7 @@ const HomePage = () => {
 
       {/* GIẢNG VIÊN */}
       <div className="section-wrapper">
-        <div className="section-content mt-24">
+        <div className="section-content">
           <Title level={2} className="section-title">
             Giảng viên tiêu biểu
           </Title>

@@ -43,23 +43,9 @@
       max-width: 1500px;
       padding: 0 16px;
     }
-  }
-
-  // ===== COURSE SECTIONS =====
-  .section-wrapper {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 24px;
-
-    .section-content {
-      max-width: 1300px;
-      width: 100%;
-      padding: 0 16px;
-
-      .section-title {
-        text-align: left;
-        margin-bottom: 24px;
+    @media (max-width: 992px) {
+      .banner-inner {
+        padding: 0;
       }
     }
   }

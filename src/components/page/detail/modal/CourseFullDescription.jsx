@@ -13,7 +13,6 @@ const CourseFullDescription = ({ course }) => {
           border: "1px solid black",
           padding: 32,
           background: "transparent",
-          marginTop: 30,
         }}
       >
         <Row gutter={48}>
@@ -107,7 +106,7 @@ const CourseFullDescription = ({ course }) => {
           border: "1px solid black",
           padding: 32,
           background: "transparent",
-          marginTop: 30,
+          marginTop: 50,
         }}
       >
         {course.lessons?.length > 0 && (
