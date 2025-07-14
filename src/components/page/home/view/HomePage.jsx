@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Dropdown, Typography, Row, Col, Button, Tooltip } from "antd";
 import { Categories } from "@/data/mockData";
 import BannerCarousel from "@/components/share/BannerCarousel";
@@ -7,35 +7,13 @@ import ChatBotUI from "@/components/share/ChatBotUI";
 import { Link } from "react-router-dom";
 import CategoryTabs from "@/components/share/CategoryTabs.jsx";
 import SectionCourse from "@/components/share/SectionCourse";
+import useHomePage from "../hook/useHomePage";
 import "@/styles/home.style.scss";
-import { getCourses } from "@/services/api";
 
 const { Title } = Typography;
 
 const HomePage = () => {
-  const [advancedCourses, setAdvancedCourses] = useState([]);
-  const [popularCourses, setPopularCourses] = useState([]);
-  const [discountCourses, setDiscountCourses] = useState([]);
-
-  useEffect(() => {
-    getCourses({ isAdvanced: true }).then((res) => {
-      if (res.data?.code === 1) {
-        setAdvancedCourses(res.data.data);
-      }
-    });
-
-    getCourses({ popular: true }).then((res) => {
-      if (res.data?.code === 1) {
-        setPopularCourses(res.data.data);
-      }
-    });
-
-    getCourses({ discountOnly: true }).then((res) => {
-      if (res.data?.code === 1) {
-        setDiscountCourses(res.data.data);
-      }
-    });
-  }, []);
+  const { advancedCourses, popularCourses, discountCourses } = useHomePage();
 
   return (
     <div className="home-page">
@@ -88,8 +66,8 @@ const HomePage = () => {
       </div>
 
       {/* ƯU ĐÃI */}
-      <div style={{ display: "flex", justifyContent: "center", marginTop: 24 }}>
-        <div style={{ maxWidth: 1300, width: "100%" }}>
+      <div className="section-wrapper mt-24">
+        <div className="section-content">
           <SectionCourse
             title="Các khoá học ưu đãi"
             courses={discountCourses}
@@ -100,8 +78,8 @@ const HomePage = () => {
       </div>
 
       {/* PHỔ BIẾN */}
-      <div style={{ display: "flex", justifyContent: "center", marginTop: 24 }}>
-        <div style={{ maxWidth: 1300, width: "100%" }}>
+      <div className="section-wrapper mt-24">
+        <div className="section-content">
           <SectionCourse
             title="Các khóa học phổ biến"
             courses={popularCourses}
@@ -112,8 +90,8 @@ const HomePage = () => {
       </div>
 
       {/* NÂNG CAO */}
-      <div style={{ display: "flex", justifyContent: "center", marginTop: 24 }}>
-        <div style={{ maxWidth: 1300, width: "100%" }}>
+      <div className="section-wrapper mt-24">
+        <div className="section-content">
           <SectionCourse
             title="Các khóa học nâng cao"
             courses={advancedCourses}
@@ -124,11 +102,9 @@ const HomePage = () => {
       </div>
 
       {/* TABS */}
-      <div
-        style={{ display: "flex", justifyContent: "center", margin: "24px 0" }}
-      >
-        <div style={{ maxWidth: 1300, width: "100%" }}>
-          <Title level={2} style={{ textAlign: "left", marginBottom: 24 }}>
+      <div className="section-wrapper mt-24">
+        <div className="section-content">
+          <Title level={2} className="section-title">
             Chương trình đào tạo theo lĩnh vực
           </Title>
           <CategoryTabs />
@@ -136,9 +112,9 @@ const HomePage = () => {
       </div>
 
       {/* GIẢNG VIÊN */}
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <div style={{ maxWidth: 1300, width: "100%", margin: 24 }}>
-          <Title level={2} style={{ textAlign: "left", marginBottom: 24 }}>
+      <div className="section-wrapper">
+        <div className="section-content mt-24">
+          <Title level={2} className="section-title">
             Giảng viên tiêu biểu
           </Title>
           <TeacherCarousel />
@@ -146,79 +122,36 @@ const HomePage = () => {
       </div>
 
       {/* FOOTER SECTION */}
-      <div
-        style={{
-          background: "linear-gradient(90deg, #FFD700, #1890FF)",
-          padding: "60px 0",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: 1300,
-            margin: "0 auto",
-            padding: "0 16px",
-          }}
-        >
+      <div className="footer-section">
+        <div className="section-content">
           <Row align="middle" gutter={[32, 32]}>
-            <Col xs={24} md={12}>
-              <div style={{ color: "#fff" }}>
-                <Title level={2} style={{ color: "#fff", marginBottom: 12 }}>
+            <Col xs={24} md={16}>
+              <div className="become-teacher">
+                <Title level={2} className="section-title white-text">
                   Trở thành giảng viên tại PTT Academy
                 </Title>
-                <p style={{ fontSize: 16, lineHeight: 1.6, marginBottom: 24 }}>
+                <p className="teacher-desc">
                   Chia sẻ kiến thức, truyền cảm hứng cho hàng ngàn học viên và
                   phát triển sự nghiệp giảng dạy của bạn cùng chúng tôi.
                 </p>
-                <Button
-                  type="default"
-                  size="large"
-                  style={{
-                    backgroundColor: "#fff",
-                    color: "#1890FF",
-                    fontWeight: 600,
-                    borderRadius: 24,
-                    padding: "10px 32px",
-                    boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
-                  }}
-                >
-                  Đăng ký ngay
-                </Button>
+                <Button className="register-btn">Đăng ký ngay</Button>
               </div>
             </Col>
-
-            <Col xs={24} md={12} style={{ textAlign: "center" }}>
+            <Col xs={24} md={8} className="teacher-img-wrapper">
               <img
                 src="https://cdn-icons-png.flaticon.com/512/219/219970.png"
                 alt="Become a Teacher"
-                style={{ maxWidth: "100%", height: "auto", maxHeight: 280 }}
+                className="teacher-img"
               />
             </Col>
           </Row>
         </div>
       </div>
 
+      {/* NÚT GỢI Ý */}
       <Link to="/find?suggested=true">
         <Tooltip title="Gợi ý sản phẩm phù hợp" placement="leftTop">
-          <Button
-            type="primary"
-            shape="circle"
-            size="large"
-            style={{
-              position: "fixed",
-              bottom: 110,
-              right: 34,
-              width: 56,
-              height: 56,
-              backgroundColor: "#722ed1",
-              boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
-
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            🎁
-          </Button>
+          <Button className="suggest-btn">🎁</Button>
         </Tooltip>
       </Link>
 

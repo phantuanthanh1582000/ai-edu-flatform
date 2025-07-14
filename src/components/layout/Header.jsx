@@ -109,11 +109,11 @@ const HeaderComponent = () => {
           <Link to="/">🎓 PTT ACADEMY</Link>
         </div>
         <DebounceSelect
+          className="search-course"
           placeholder="Tìm khoá học..."
           fetchOptions={fetchCourseOptions}
           onChange={onSelectCourse}
           value={selectedCourse}
-          style={{ width: 500, height: 40 }}
         />
       </div>
 

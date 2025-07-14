@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
 
+  // ===== LOGO + SEARCH =====
   .header-left {
     display: flex;
     align-items: center;
@@ -14,53 +15,50 @@
     min-width: 0;
 
     .logo {
-        a {
-            color: black !important; // đổi màu thành trắng
-            font-weight: bold;
-            font-size: 18px;
-            text-decoration: none;
-
-            
-        }
+      a {
+        color: black !important;
+        font-weight: bold;
+        font-size: 18px;
+        text-decoration: none;
+      }
     }
 
     .search-course {
       min-width: 250px;
-      max-width: 100%;
+      max-width: 500px;
+      height: 40px;
       flex: 1;
     }
   }
 
- .menu {
-  background: transparent;
-  border-bottom: none;
-  flex-shrink: 0;
-  white-space: nowrap;
+  // ===== MENU =====
+  .menu {
+    background: transparent;
+    border-bottom: none;
+    flex-shrink: 0;
+    white-space: nowrap;
 
-  .ant-menu-item {
-  a {
-    color: #999 !important;
-    text-decoration: none;
-  }
+    .ant-menu-item {
+      a {
+        color: #999 !important;
+        text-decoration: none;
+      }
 
-  // Hover: chỉ đổi màu chữ, không gạch chân
-  &:hover {
-    a {
-      color: black !important;
+      &:hover {
+        a {
+          color: black !important;
+        }
+      }
+
+      &.ant-menu-item-selected {
+        a {
+          color: black !important;
+        }
+      }
+
+      &::after {
+        border-bottom: none !important;
+      }
     }
   }
-
-  // Khi được chọn
-  &.ant-menu-item-selected {
-    a {
-      color: black !important;
-    }
-  }
-
-  // Xóa đường viền dưới nếu Ant Design thêm qua ::after
-  &::after {
-    border-bottom: none !important;
-  }
-}
-}
 }

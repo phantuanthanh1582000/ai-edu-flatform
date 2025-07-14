@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
-import { getCourseDetail, getCoursesByIds } from "@/services/api";
 import { Typography, Spin } from "antd";
 import SummaryCourseDetail from "@/components/page/detail/modal/SummaryCourseDetail";
 import CourseFullDescription from "@/components/page/detail/modal/CourseFullDescription";
 import CourseReviewForm from "../modal/CourseReviewForm";
 import SectionCourse from "@/components/share/SectionCourse";
+import useCourseDetailPage from "../hook/useCourseDetailPage";
 import "@/styles/detail.style.scss";
 
 const { Text } = Typography;
@@ -14,38 +14,7 @@ const CourseDetailPage = () => {
   const location = useLocation();
   const courseId = location.state?.courseId;
 
-  const [course, setCourse] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  // Lịch sử xem
-  const [historyCourses, setHistoryCourses] = useState([]);
-
-  useEffect(() => {
-    if (!courseId) return;
-
-    setLoading(true);
-
-    // 1. Lấy chi tiết khóa học
-    getCourseDetail(courseId)
-      .then((res) => {
-        if (res.data.code === 1) {
-          setCourse(res.data.data);
-        }
-      })
-      .finally(() => setLoading(false));
-
-    // 2. Lấy lịch sử xem từ localStorage (loại bỏ khóa học hiện tại)
-    let viewedIds = JSON.parse(localStorage.getItem("viewedCourses") || "[]");
-    viewedIds = viewedIds.filter((id) => id !== courseId);
-
-    if (viewedIds.length > 0) {
-      getCoursesByIds(viewedIds).then((res) => {
-        if (res.data.code === 1) {
-          setHistoryCourses(res.data.data);
-        }
-      });
-    }
-  }, [courseId]);
+  const { course, loading, historyCourses } = useCourseDetailPage(courseId);
 
   if (!courseId) {
     return <Text type="danger">❌ Không tìm thấy ID khóa học.</Text>;
@@ -70,12 +39,7 @@ const CourseDetailPage = () => {
       </div>
 
       <div className="section-wrapper">
-        <div
-          className="section-content"
-          style={{
-            background: "transparent",
-          }}
-        >
+        <div className="section-content">
           {historyCourses.length > 0 && (
             <SectionCourse
               title="Khóa học bạn đã xem gần đây"

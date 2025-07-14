@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import Slider from 'react-slick';
-import TeacherCard from './TeacherCard';
-import { getTeachers } from '@/services/api';
+import React, { useEffect, useState } from "react";
+import Slider from "react-slick";
+import TeacherCard from "./TeacherCard";
+import { getTeachers } from "@/services/api";
 
 const TeacherCarousel = () => {
   const [teachers, setTeachers] = useState([]);
 
-  // 👉 Viết hàm fetch bên ngoài useEffect
   const fetchTeachers = async () => {
     try {
       const res = await getTeachers();
@@ -14,18 +13,17 @@ const TeacherCarousel = () => {
         setTeachers(res.data.data);
       }
     } catch (error) {
-      console.error('❌ Lỗi khi lấy danh sách giảng viên:', error);
+      console.error("❌ Lỗi khi lấy danh sách giảng viên:", error);
     }
   };
 
-  // 👉 Chỉ gọi hàm
   useEffect(() => {
     fetchTeachers();
   }, []);
 
   const settings = {
     centerMode: true,
-    centerPadding: '0px',
+    centerPadding: "0px",
     slidesToShow: 4,
     autoplay: true,
     autoplaySpeed: 3000,
@@ -45,11 +43,11 @@ const TeacherCarousel = () => {
   };
 
   return (
-    <div style={{ maxWidth: 1300, margin: '0 auto' }}>
+    <div>
       <Slider {...settings}>
         {teachers.map((teacher) => (
           <div key={teacher.id}>
-            <div className="teacher-slide">
+            <div>
               <TeacherCard {...teacher} />
             </div>
           </div>

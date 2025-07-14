@@ -10,18 +10,18 @@ const SectionCourse = ({ title, courses = [], showMax = 8, showMoreLink }) => {
   if (!courses.length) return null;
 
   return (
-    <div style={{ margin: "30px 0", display: "flex", flexDirection: "column" }}>
-      <Row justify="space-between" align="middle" style={{ marginBottom: 24 }}>
+    <div className="section-course">
+      <Row justify="space-between" align="middle" className="section-header">
         <Col>
-          <Title level={2} style={{ margin: 0 }}>
+          <Title level={2} className="section-title">
             {title}
           </Title>
         </Col>
 
-        {showMoreLink && ( // ✅ chỉ hiện nếu có showMoreLink
+        {showMoreLink && (
           <Col>
             <Link to={showMoreLink}>
-              <Button type="link" style={{ fontSize: 16 }}>
+              <Button type="link" className="section-more-btn">
                 Xem thêm <ArrowRightOutlined />
               </Button>
             </Link>

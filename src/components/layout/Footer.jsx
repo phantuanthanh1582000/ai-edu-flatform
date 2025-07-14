@@ -1,8 +1,8 @@
-import React from 'react';
-import { Layout, Row, Col, Typography, Space } from 'antd';
-import { FacebookFilled, YoutubeFilled, MailOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
-import '@/styles/footer.style.scss'; 
+import React from "react";
+import { Layout, Row, Col, Typography, Space } from "antd";
+import { FacebookFilled, YoutubeFilled, MailOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
+import "@/styles/footer.style.scss";
 
 const { Footer } = Layout;
 const { Title, Text } = Typography;
@@ -12,9 +12,11 @@ const FooterComponent = () => {
     <Footer className="footer">
       <Row gutter={[32, 32]}>
         <Col xs={24} sm={12} md={6}>
-          <Title level={4} className="footer-logo">🎓 PTT ACADEMY</Title>
-          <Text>
-            Mua khóa học online đa môn, học mọi lúc mọi nơi.
+          <Title level={3} className="footer-logo">
+            🎓 PTT ACADEMY
+          </Title>
+          <Text className="footer-description">
+            Mua khóa học online ngành lập trình học mọi lúc mọi nơi.
           </Text>
         </Col>
 
@@ -39,10 +41,18 @@ const FooterComponent = () => {
         <Col xs={24} sm={12} md={6}>
           <Title level={5}>Kết nối</Title>
           <div className="footer-icons">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FacebookFilled />
             </a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <YoutubeFilled />
             </a>
             <a href="mailto:contact@pttacademy.com">

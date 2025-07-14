@@ -10,7 +10,6 @@ import {
   Tag,
   Button,
   Upload,
-  message,
 } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { useAuth } from "@/global/AuthContext";
@@ -25,21 +24,17 @@ const ProfileInfo = () => {
   const handleUpload = (file) => {
     const isImage = file.type.startsWith("image/");
     if (!isImage) {
-      message.error("Chỉ hỗ trợ định dạng ảnh.");
+      window.messageApi?.error("Chỉ hỗ trợ định dạng ảnh.");
       return false;
     }
 
     const reader = new FileReader();
     reader.onload = () => {
       const base64 = reader.result;
-
       const updatedUser = { ...user, avatar: base64 };
-
       localStorage.setItem("user", JSON.stringify(updatedUser));
-
       setUser(updatedUser);
-
-      message.success("Đổi ảnh thành công!");
+      window.messageApi?.success("Đổi ảnh thành công!");
     };
 
     reader.readAsDataURL(file);
@@ -48,32 +43,21 @@ const ProfileInfo = () => {
 
   return (
     <>
-      <Card>
+      <Card className="profile-card">
         <Row gutter={[24, 24]} align="middle">
-          <Col xs={24} sm={8} style={{ textAlign: "center" }}>
+          <Col xs={24} sm={8} className="profile-avatar-col">
             <Avatar
               size={120}
               src={user?.avatar}
               icon={
                 !user?.avatar && <Text>{user?.name?.[0]?.toUpperCase()}</Text>
               }
-              style={{ marginBottom: 12 }}
+              className="profile-avatar"
             />
             <Title level={4}>{user?.name}</Title>
             {user?.role && (
-              <Tag
-                style={{
-                  backgroundColor: "#52c41a",
-                  color: "white",
-                  fontSize: 14,
-                  padding: "2px 10px",
-                  border: "none",
-                }}
-              >
-                {user.role.toUpperCase()}
-              </Tag>
+              <Tag className="profile-role-tag">{user.role.toUpperCase()}</Tag>
             )}
-
             <Upload
               showUploadList={false}
               beforeUpload={handleUpload}
@@ -82,7 +66,7 @@ const ProfileInfo = () => {
               <Button
                 icon={<UploadOutlined />}
                 size="small"
-                style={{ marginTop: 8 }}
+                className="upload-btn"
               >
                 Đổi ảnh
               </Button>
@@ -93,8 +77,8 @@ const ProfileInfo = () => {
             <Divider orientation="left">Thông tin chi tiết</Divider>
             <Descriptions
               column={1}
-              styles={{ label: { fontWeight: 600 } }}
               size="small"
+              className="profile-descriptions"
             >
               <Descriptions.Item label="Email">{user?.email}</Descriptions.Item>
               <Descriptions.Item label="Số điện thoại">
@@ -108,7 +92,7 @@ const ProfileInfo = () => {
               </Descriptions.Item>
             </Descriptions>
 
-            <div style={{ marginTop: 16 }}>
+            <div className="edit-btn-wrapper">
               <Button type="primary" onClick={() => setModalOpen(true)}>
                 Cập nhật thông tin
               </Button>
@@ -117,7 +101,6 @@ const ProfileInfo = () => {
         </Row>
       </Card>
 
-      {/* Modal cập nhật thông tin */}
       <EditProfileModal
         open={modalOpen}
         onClose={() => setModalOpen(false)}

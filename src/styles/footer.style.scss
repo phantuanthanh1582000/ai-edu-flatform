@@ -5,15 +5,21 @@
 
   .footer-logo {
     font-weight: bold;
-    color: #fff; // màu cho Title level 4
+    color: #fff;
+    max-width: 220px;
+  }
+
+  .footer-description {
+    max-width: 220px;
+    display: block;
   }
 
   .ant-typography {
-    color: #fff; // màu cho Text
+    color: #fff;
   }
 
   h5.ant-typography {
-    color: #fff; // màu cho Title level 5
+    color: #fff;
   }
 
   a {

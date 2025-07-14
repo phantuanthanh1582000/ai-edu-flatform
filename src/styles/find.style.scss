@@ -1,27 +1,33 @@
 .find-page-wrapper {
   margin: 40px auto;
   padding: 24px;
-}
 
-.find-page-title {
-  text-align: center;
-  margin-bottom: 32px;
-}
+  .ant-card-head-title {
+    font-size: 30px;
+    font-weight: 600;
+  }
 
-.find-page-loading,
-.find-page-empty {
-  text-align: center;
-  padding: 40px 0;
-}
+  .find-page-loading,
+  .find-page-empty {
+    text-align: center;
+    padding: 40px 0;
+  }
 
-.course-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
+  .course-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 
-  &:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    &:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .pagination-container {
+    margin-top: 32px;
+    display: flex;
+    justify-content: flex-end;
   }
 }

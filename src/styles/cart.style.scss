@@ -1,0 +1,30 @@
+.cart-page {
+  padding: 24px;
+
+  .cart-card {
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .cart-list-item {
+    .ant-list-item-meta-avatar {
+      margin-right: 16px;
+    }
+
+    .ant-list-item-meta-title {
+      font-weight: 600;
+    }
+
+    .cart-desc {
+      margin-top: 8px;
+
+      .ant-input-number {
+        margin: 8px 0;
+      }
+
+      strong {
+        color: #d4380d;
+      }
+    }
+  }
+}

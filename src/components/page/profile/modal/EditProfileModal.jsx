@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, message } from "antd";
+import { Modal } from "antd";
 import { useAuth } from "@/global/AuthContext";
 import CustomForm from "@/components/share/CustomForm";
 
@@ -28,7 +28,7 @@ const EditProfileModal = ({ open, onClose, initialValues }) => {
     setUser(updatedUser);
     localStorage.setItem("user", JSON.stringify(updatedUser));
 
-    message.success("Cập nhật thành công!");
+    window.messageApi?.success("Cập nhật thành công!");
     onClose();
   };
 

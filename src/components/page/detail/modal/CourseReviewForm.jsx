@@ -70,7 +70,7 @@ const CourseReviewForm = ({ courseId }) => {
         }}
       >
         <Title level={2} style={{ marginTop: 0, fontSize: 32 }}>
-          📝 Đánh giá khóa học
+          Đánh giá khóa học
         </Title>
 
         {submitted ? (

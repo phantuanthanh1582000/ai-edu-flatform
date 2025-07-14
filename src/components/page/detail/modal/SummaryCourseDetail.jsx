@@ -11,6 +11,7 @@ import {
   Divider,
   Button,
 } from "antd";
+import CheckoutSummary from "@/components/share/CheckoutSummary";
 import { DownloadOutlined, VideoCameraOutlined } from "@ant-design/icons";
 import FormatUtils from "@/ulti/Format";
 
@@ -150,49 +151,13 @@ const SummaryCourseDetail = ({ course }) => {
 
         {/* Cột phải: Thanh toán */}
         <Col xs={24} md={8}>
-          <Card
-            title={<span style={{ color: "white" }}>Thanh toán</span>}
-            bordered={false}
-            style={{
-              backgroundColor: "transparent",
-              border: "1px solid #fff",
-              color: "white",
-              borderRadius: 8,
-              boxShadow: "0 2px 12px rgba(0,0,0,0.1)",
-            }}
-            bodyStyle={{ color: "white" }}
-          >
-            <div style={{ marginBottom: 12 }}>
-              <Text style={{ color: "white" }}>Tạm tính:</Text>
-              <Text strong style={{ float: "right", color: "white" }}>
-                {FormatUtils.vndPrice(price)}
-              </Text>
-            </div>
-            <div style={{ marginBottom: 12 }}>
-              <Text style={{ color: "white" }}>VAT (10%):</Text>
-              <Text strong style={{ float: "right", color: "white" }}>
-                {FormatUtils.vndPrice(vat)}
-              </Text>
-            </div>
-            <Divider style={{ borderColor: "#ccc" }} />
-            <div style={{ marginBottom: 16 }}>
-              <Text style={{ color: "white" }}>Tổng cộng:</Text>
-              <Text
-                strong
-                style={{ float: "right", fontSize: 16, color: "#00ffcc" }}
-              >
-                {FormatUtils.vndPrice(total)}
-              </Text>
-            </div>
-            <Button
-              type="primary"
-              block
-              onClick={() => alert("Đặt hàng thành công!")}
-              style={{ backgroundColor: "#13c2c2", borderColor: "#13c2c2" }}
-            >
-              Thanh toán
-            </Button>
-          </Card>
+          <CheckoutSummary
+            className="checkout-detail"
+            total={price}
+            vat={vat}
+            grandTotal={total}
+            onCheckout={() => alert("Đặt hàng thành công!")}
+          />
         </Col>
       </Row>
     </div>
