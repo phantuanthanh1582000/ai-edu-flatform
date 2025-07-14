@@ -1,6 +1,6 @@
-import React, { useMemo, useRef, useState } from 'react';
-import { Select, Spin } from 'antd';
-import debounce from 'lodash/debounce';
+import React, { useMemo, useRef, useState } from "react";
+import { Select, Spin } from "antd";
+import debounce from "lodash/debounce";
 
 export const DebounceSelect = ({
   fetchOptions,
@@ -32,8 +32,8 @@ export const DebounceSelect = ({
   }, [fetchOptions, debounceTimeout]);
 
   const handleChange = (newValue) => {
-    setOpen(false); 
-    onChange?.(newValue); 
+    setOpen(false);
+    onChange?.(newValue);
   };
 
   return (
@@ -50,7 +50,7 @@ export const DebounceSelect = ({
       }}
       onFocus={() => setOpen(false)}
       open={open}
-      onChange={handleChange} 
+      onChange={handleChange}
       notFoundContent={fetching ? <Spin size="small" /> : null}
       options={options}
       value={value}

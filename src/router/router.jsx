@@ -6,6 +6,7 @@ import FindPage from "@/components/page/find/view/Find";
 import ProfilePage from "@/components/page/profile/view/Profile";
 import CartPage from "@/components/page/cart/view/CartPage";
 import CourseDetailPage from "@/components/page/detail/view/CourseDetailPage";
+import MaintenancePage from "@/components/share/MaintenancePage";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,12 @@ const router = createBrowserRouter([
       { path: "profile", element: <ProfilePage /> },
       { path: "cart", element: <CartPage /> },
       { path: "coursedetail", element: <CourseDetailPage /> },
+      { path: "about", element: <MaintenancePage /> },
+      { path: "policy", element: <MaintenancePage /> },
+      { path: "contact", element: <MaintenancePage /> },
+      { path: "faq", element: <MaintenancePage /> },
+      { path: "support", element: <MaintenancePage /> },
+      { path: "feedback", element: <MaintenancePage /> },
     ],
   },
 ]);

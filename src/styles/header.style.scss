@@ -1,64 +1,73 @@
 .header {
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 0 24px;
-  height: 64px;
+  padding: 0 16px;
+  height: auto;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
 
-  // ===== LOGO + SEARCH =====
   .header-left {
     display: flex;
     align-items: center;
-    gap: 16px;
-    flex: 1 1 auto;
+    gap: 12px;
+    flex: 1;
     min-width: 0;
 
     .logo {
       a {
-        color: black !important;
         font-weight: bold;
         font-size: 18px;
-        text-decoration: none;
+        color: black !important;
+        white-space: nowrap;
       }
     }
 
     .search-course {
-      min-width: 250px;
+      min-width: 200px;
       max-width: 500px;
-      height: 40px;
       flex: 1;
     }
   }
 
-  // ===== MENU =====
   .menu {
     background: transparent;
     border-bottom: none;
     flex-shrink: 0;
     white-space: nowrap;
+  }
 
-    .ant-menu-item {
-      a {
-        color: #999 !important;
-        text-decoration: none;
-      }
+  .mobile-menu-btn {
+    font-size: 20px;
+    color: #000;
+  }
+
+  .user-submenu {
+    padding: 8px 0;
+    border-top: 1px solid #eee;
+
+    .user-submenu-item {
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: background-color 0.3s;
 
       &:hover {
-        a {
-          color: black !important;
-        }
+        background: #f5f5f5;
       }
+    }
+  }
 
-      &.ant-menu-item-selected {
-        a {
-          color: black !important;
-        }
+  @media (max-width: 768px) {
+    .header-left {
+      .search-course {
+        min-width: 100px;
+        max-width: 200px;
       }
+    }
 
-      &::after {
-        border-bottom: none !important;
-      }
+    .menu {
+      display: none;
     }
   }
 }

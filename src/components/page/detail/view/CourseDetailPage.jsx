@@ -38,7 +38,7 @@ const CourseDetailPage = () => {
         <CourseReviewForm courseId={course.id} />
       </div>
 
-      <div className="section-wrapper">
+      <div className="section-wrapper history-view">
         <div className="section-content">
           {historyCourses.length > 0 && (
             <SectionCourse

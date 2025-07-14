@@ -12,9 +12,15 @@ const FooterComponent = () => {
     <Footer className="footer">
       <Row gutter={[32, 32]}>
         <Col xs={24} sm={12} md={6}>
-          <Title level={3} className="footer-logo">
-            🎓 PTT ACADEMY
-          </Title>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Title
+              level={3}
+              className="footer-logo"
+              style={{ cursor: "pointer", margin: 0 }}
+            >
+              🎓 PTT ACADEMY
+            </Title>
+          </Link>
           <Text className="footer-description">
             Mua khóa học online ngành lập trình học mọi lúc mọi nơi.
           </Text>

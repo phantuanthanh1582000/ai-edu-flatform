@@ -1,31 +1,40 @@
 import React, { useState } from "react";
-import { Layout, Menu, Dropdown } from "antd";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Layout, Menu, Dropdown, Drawer, Button, Grid } from "antd";
 import {
   ShoppingCartOutlined,
   UserOutlined,
   LogoutOutlined,
+  MenuOutlined,
 } from "@ant-design/icons";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { DebounceSelect } from "@/components/share/DebounceSelect";
 import { Courses } from "@/data/mockData";
 import { useAuth } from "@/global/AuthContext";
 import "@/styles/header.style.scss";
 
 const { Header } = Layout;
+const { useBreakpoint } = Grid;
 
 const HeaderComponent = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, onLogout } = useAuth();
+  const screens = useBreakpoint();
 
   const [selectedCourse, setSelectedCourse] = useState(null);
+  const [openDrawer, setOpenDrawer] = useState(false);
+
+  const handleNavigate = (path) => {
+    navigate(path);
+    setOpenDrawer(false);
+  };
 
   const fetchCourseOptions = async (search) => {
-    return Courses.filter((cat) =>
-      cat.name.toLowerCase().includes(search.toLowerCase())
-    ).map((cat) => ({
-      label: cat.name,
-      value: cat.id,
+    return Courses.filter((c) =>
+      c.name.toLowerCase().includes(search.toLowerCase())
+    ).map((c) => ({
+      label: c.name,
+      value: c.id,
     }));
   };
 
@@ -37,12 +46,13 @@ const HeaderComponent = () => {
   const handleLogout = () => {
     onLogout();
     navigate("/login");
+    setOpenDrawer(false);
   };
 
   const handleCartClick = (e) => {
     e.preventDefault();
     window.messageApi?.warning("Vui lòng đăng nhập để sử dụng giỏ hàng!");
-    navigate("/login");
+    handleNavigate("/login");
   };
 
   const userMenu = {
@@ -59,48 +69,76 @@ const HeaderComponent = () => {
       },
     ],
     onClick: ({ key }) => {
-      if (key === "profile") {
-        navigate("/profile");
-      } else if (key === "logout") {
-        handleLogout();
-      }
+      if (key === "profile") handleNavigate("/profile");
+      else if (key === "logout") handleLogout();
     },
   };
 
-  const menuItems = [
-    {
-      key: "/",
-      label: <Link to="/">Trang chủ</Link>,
-    },
-    {
-      key: "/about",
-      label: <Link to="/about">Giới thiệu</Link>,
-    },
-    {
-      key: "/cart",
-      label: user ? (
-        <Link to="/cart">
-          <ShoppingCartOutlined style={{ fontSize: 18 }} />
-        </Link>
-      ) : (
-        <a href="/login" onClick={handleCartClick}>
-          <ShoppingCartOutlined style={{ fontSize: 18 }} />
-        </a>
-      ),
-    },
-    !user && {
-      key: "/login",
-      label: <Link to="/login">Đăng nhập/Đăng ký</Link>,
-    },
-    user && {
-      key: "user",
-      label: (
-        <Dropdown menu={userMenu} placement="bottomRight" arrow>
-          <span style={{ cursor: "pointer" }}>👋 {user.name}</span>
-        </Dropdown>
-      ),
-    },
-  ].filter(Boolean);
+  const getMenuItems = () => {
+    const isMobile = !screens.md;
+
+    return [
+      {
+        key: "/",
+        label: isMobile ? (
+          <span onClick={() => handleNavigate("/")}>Trang chủ</span>
+        ) : (
+          <Link to="/">Trang chủ</Link>
+        ),
+      },
+      {
+        key: "/about",
+        label: isMobile ? (
+          <span onClick={() => handleNavigate("/about")}>Giới thiệu</span>
+        ) : (
+          <Link to="/about">Giới thiệu</Link>
+        ),
+      },
+      {
+        key: "/cart",
+        label: user ? (
+          <span onClick={() => handleNavigate("/cart")}>
+            <ShoppingCartOutlined style={{ fontSize: 18 }} />
+          </span>
+        ) : (
+          <a href="/login" onClick={handleCartClick}>
+            <ShoppingCartOutlined style={{ fontSize: 18 }} />
+          </a>
+        ),
+      },
+      !user && {
+        key: "/login",
+        label: (
+          <span onClick={() => handleNavigate("/login")}>
+            Đăng nhập/Đăng ký
+          </span>
+        ),
+      },
+      user &&
+        (screens.md
+          ? {
+              key: "user",
+              label: (
+                <Dropdown menu={userMenu} placement="bottomRight" arrow>
+                  <span style={{ cursor: "pointer" }}>👋 {user.name}</span>
+                </Dropdown>
+              ),
+            }
+          : {
+              key: "profile",
+              label: (
+                <span onClick={() => handleNavigate("/profile")}>
+                  👤 Trang cá nhân
+                </span>
+              ),
+            }),
+      user &&
+        !screens.md && {
+          key: "logout",
+          label: <span onClick={handleLogout}>🚪 Đăng xuất</span>,
+        },
+    ].filter(Boolean);
+  };
 
   return (
     <Header className="header">
@@ -117,13 +155,37 @@ const HeaderComponent = () => {
         />
       </div>
 
-      <Menu
-        theme="light"
-        mode="horizontal"
-        selectedKeys={[location.pathname]}
-        items={menuItems}
-        className="menu"
-      />
+      {screens.md ? (
+        <Menu
+          theme="light"
+          mode="horizontal"
+          selectedKeys={[location.pathname]}
+          items={getMenuItems()}
+          className="menu"
+        />
+      ) : (
+        <>
+          <Button
+            icon={<MenuOutlined />}
+            type="text"
+            onClick={() => setOpenDrawer(true)}
+            className="mobile-menu-btn"
+          />
+          <Drawer
+            title="Menu"
+            placement="right"
+            onClose={() => setOpenDrawer(false)}
+            open={openDrawer}
+          >
+            <Menu
+              mode="vertical"
+              selectedKeys={[location.pathname]}
+              items={getMenuItems()}
+              onClick={() => setOpenDrawer(false)}
+            />
+          </Drawer>
+        </>
+      )}
     </Header>
   );
 };
