@@ -23,7 +23,7 @@ const HeaderComponent = () => {
 
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [openDrawer, setOpenDrawer] = useState(false);
-  const [menuKey, setMenuKey] = useState(Date.now()); // ✅ Key để force remount Menu
+  const [menuKey, setMenuKey] = useState(Date.now());
 
   const isMobile = !screens.lg;
 
@@ -140,7 +140,7 @@ const HeaderComponent = () => {
         <div className="header-right">
           <div className="menu-wrapper">
             <Menu
-              key={menuKey} // ✅ Gán key để Menu re-render khi cần
+              key={menuKey}
               theme="light"
               mode="horizontal"
               selectedKeys={[location.pathname]}
@@ -185,7 +185,7 @@ const HeaderComponent = () => {
               items={[
                 ...getMenuItems(),
                 user && {
-                  key: "profile",
+                  key: "/profile",
                   label: (
                     <span onClick={() => handleNavigate("/profile")}>
                       Trang cá nhân
@@ -193,7 +193,7 @@ const HeaderComponent = () => {
                   ),
                 },
                 user && {
-                  key: "logout",
+                  key: "/logout",
                   label: <span onClick={handleLogout}>Đăng xuất</span>,
                 },
               ].filter(Boolean)}

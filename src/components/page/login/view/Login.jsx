@@ -39,10 +39,14 @@ const Login = () => {
       <Title level={2} className="login-title">
         🎓 PTT ACADEMY
       </Title>
-      <Card className="login-card">
-        <Title level={3} className="login-title">
-          Đăng nhập
-        </Title>
+      <Card
+        className="login-card"
+        title={
+          <div style={{ textAlign: "center" }}>
+            <Title level={3}>Đăng nhập</Title>
+          </div>
+        }
+      >
         <CustomForm
           fields={fields}
           onFinish={onFinish}

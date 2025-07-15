@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Tabs, Spin, Row, Col, Typography, message, Button } from "antd";
+import { Tabs, Spin, Typography, message, Button } from "antd";
 import { getCourses } from "@/services/api";
 import { Categories } from "@/data/mockData";
 import CourseCard from "./CourseCard";
@@ -52,13 +52,13 @@ const CategoryTabs = () => {
           label: cate.name,
           children: (
             <Spin spinning={loading}>
-              <Row gutter={[16, 16]} justify="left">
+              <div className="course-scroll-wrapper">
                 {courses.slice(0, 12).map((course) => (
-                  <Col key={course.id} xs={12} sm={12} md={8} lg={6}>
+                  <div className="course-scroll-item" key={course.id}>
                     <CourseCard {...course} />
-                  </Col>
+                  </div>
                 ))}
-              </Row>
+              </div>
 
               <div className="view-more-button">
                 <Button type="primary" onClick={handleViewMore}>

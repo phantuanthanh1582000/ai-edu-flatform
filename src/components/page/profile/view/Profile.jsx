@@ -24,11 +24,12 @@ const ProfilePage = () => {
   const [selectedKey, setSelectedKey] = useState("info");
   const [drawerVisible, setDrawerVisible] = useState(false);
   const screens = useBreakpoint();
-  const isMobile = !screens.md; // < 768px
+  const isMobile = !screens.md;
 
   const handleMenuClick = ({ key }) => {
+    console.log(key);
     setSelectedKey(key);
-    if (isMobile) setDrawerVisible(false); // đóng Drawer sau khi chọn
+    if (isMobile) setDrawerVisible(false);
   };
 
   const menuItems = [

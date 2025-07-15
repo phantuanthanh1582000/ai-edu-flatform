@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, Button, Select } from "antd";
+import { Form, Input, Button, Select, Checkbox } from "antd";
 
 const { Option } = Select;
 
@@ -33,23 +33,34 @@ const CustomForm = ({
             autoSize={{ minRows: 4, maxRows: 8 }}
           />
         );
+      case "checkbox":
+        return <Checkbox>{label}</Checkbox>; // Label sẽ hiển thị bên phải
       default:
         return <Input type={type} placeholder={placeholder || label} />;
     }
   };
 
   return (
-    <Form layout="vertical" onFinish={onFinish} initialValues={initialValues}>
-      {fields.map((field) => (
-        <Form.Item
-          key={field.name}
-          name={field.name}
-          label={field.label}
-          rules={field.rules}
-        >
-          {renderField(field)}
-        </Form.Item>
-      ))}
+    <Form
+      layout="vertical"
+      onFinish={onFinish}
+      initialValues={initialValues}
+      scrollToFirstError
+    >
+      {fields.map((field) => {
+        const isCheckbox = field.type === "checkbox";
+        return (
+          <Form.Item
+            key={field.name}
+            name={field.name}
+            label={!isCheckbox ? field.label : undefined}
+            valuePropName={isCheckbox ? "checked" : "value"}
+            rules={field.rules}
+          >
+            {renderField(field)}
+          </Form.Item>
+        );
+      })}
 
       <Form.Item>
         <Button type="primary" htmlType="submit" loading={loading} block>

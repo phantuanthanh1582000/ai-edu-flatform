@@ -29,13 +29,13 @@ const SectionCourse = ({ title, courses = [], showMax = 8, showMoreLink }) => {
         )}
       </Row>
 
-      <Row gutter={[16, 16]} className="section-course-content">
+      <div className="course-scroll-wrapper">
         {courses.slice(0, showMax).map((course) => (
-          <Col key={course.id} xs={12} sm={8} md={8} lg={6}>
+          <div key={course.id} className="course-scroll-item">
             <CourseCard {...course} />
-          </Col>
+          </div>
         ))}
-      </Row>
+      </div>
     </div>
   );
 };

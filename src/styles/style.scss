@@ -21,8 +21,12 @@
     }
   }
   @media (max-width: 768px) {
-    .section-title {
-      font-size: 20px !important;
+    .section-content {
+      padding-left: 20px;
+      padding-right: 20px;
+      .section-title {
+        font-size: 20px !important;
+      }
     }
   }
 }
@@ -107,6 +111,7 @@
   background-color: #fff;
   border-radius: 8px;
   padding: 24px;
+
   .category-tabs {
     .ant-tabs-tab {
       font-weight: 600;
@@ -120,15 +125,50 @@
     .ant-tabs-ink-bar {
       background: #1890ff;
     }
-    .view-more-button {
-      text-align: center;
-      margin-top: 24px;
+  }
 
-      .ant-btn-primary {
-        font-weight: bold;
-        padding: 6px 24px;
-        border-radius: 6px;
+  .course-scroll-wrapper {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 12px;
+    scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .course-scroll-item {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      width: 55%;
+
+      @media (min-width: 576px) {
+        width: 45%;
       }
+
+      @media (min-width: 992px) {
+        width: 100%;
+      }
+    }
+
+    @media (min-width: 992px) {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      overflow-x: unset;
+      gap: 16px;
+    }
+  }
+
+  .view-more-button {
+    text-align: center;
+    margin-top: 24px;
+
+    .ant-btn-primary {
+      font-weight: bold;
+      padding: 6px 24px;
+      border-radius: 6px;
     }
   }
 }
@@ -327,20 +367,55 @@
 
   .section-header {
     margin-bottom: 24px;
+
     .ant-col {
       .section-title {
         margin: 0;
       }
+
       .section-more-btn {
         font-size: 16px;
         padding: 0;
         height: auto;
+
+        @media (max-width: 768px) {
+          font-size: 13px !important;
+        }
       }
     }
   }
-  @media (max-width: 768px) {
-    .section-more-btn {
-      font-size: 13px !important;
+
+  .course-scroll-wrapper {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 12px;
+    scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .course-scroll-item {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      width: 50%;
+
+      @media (min-width: 576px) {
+        width: 40%;
+      }
+
+      @media (min-width: 992px) {
+        width: 100%;
+      }
+    }
+
+    @media (min-width: 992px) {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 16px;
+      overflow-x: unset;
     }
   }
 }
