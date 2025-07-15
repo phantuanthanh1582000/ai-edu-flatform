@@ -11,7 +11,7 @@ const CustomCourseList = ({ category }) => {
   const filtered = Courses.filter((c) => c.category === category);
 
   const handleClick = (id) => {
-    navigate(`/course/${id}`);
+    navigate("/coursedetail", { state: { courseId: id } });
   };
 
   return (
