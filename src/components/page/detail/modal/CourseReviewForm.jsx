@@ -68,17 +68,23 @@ const CourseReviewForm = ({ courseId }) => {
           padding: 32,
         }}
       >
-        <Title level={2} style={{ marginTop: 0, fontSize: 32 }}>
+        <Title
+          className="title"
+          level={2}
+          style={{ marginTop: 0, fontSize: 32 }}
+        >
           Đánh giá khóa học
         </Title>
 
         {submitted ? (
-          <Text style={{ fontSize: 18 }} type="success">
+          <Text className="content" style={{ fontSize: 18 }} type="success">
             ✅ Bạn đã gửi đánh giá!
           </Text>
         ) : (
           <>
-            <Text style={{ fontSize: 18 }}>Chọn số sao:</Text>
+            <Text className="content" style={{ fontSize: 18 }}>
+              Chọn số sao:
+            </Text>
             <br />
             <Rate
               value={rating}
@@ -110,11 +116,16 @@ const CourseReviewForm = ({ courseId }) => {
                 style={{ marginRight: 12 }}
                 src={review.avatar}
               />
-              <Text strong>{review.userName || "Ẩn danh"}</Text>
+              <Text className="content" strong>
+                {review.userName || "Ẩn danh"}
+              </Text>
             </div>
 
             <Rate disabled defaultValue={review.rating} />
-            <Text style={{ display: "block", marginTop: 8 }}>
+            <Text
+              className="content"
+              style={{ display: "block", marginTop: 8 }}
+            >
               {review.comment}
             </Text>
             <Text type="secondary" style={{ fontSize: 12 }}>

@@ -19,6 +19,7 @@ const CourseFullDescription = ({ course }) => {
           {/* Cột trái: Giới thiệu + Yêu cầu */}
           <Col xs={24} md={12}>
             <Title
+              className="title"
               level={2}
               style={{
                 marginTop: 0,
@@ -29,6 +30,7 @@ const CourseFullDescription = ({ course }) => {
             </Title>
 
             <Paragraph
+              className="content"
               style={{
                 whiteSpace: "pre-line",
                 fontSize: 18,
@@ -42,6 +44,7 @@ const CourseFullDescription = ({ course }) => {
             {course.prerequisites && (
               <>
                 <Title
+                  className="title"
                   level={2}
                   style={{
                     marginTop: 40,
@@ -51,6 +54,7 @@ const CourseFullDescription = ({ course }) => {
                   Yêu cầu trước khóa học
                 </Title>
                 <Paragraph
+                  className="content"
                   style={{
                     fontSize: 18,
                     lineHeight: 2,
@@ -67,6 +71,7 @@ const CourseFullDescription = ({ course }) => {
             {course.skills?.length > 0 && (
               <>
                 <Title
+                  className="title"
                   level={2}
                   style={{
                     fontSize: 32,
@@ -102,6 +107,7 @@ const CourseFullDescription = ({ course }) => {
       </div>
 
       <div
+        className="lesson"
         style={{
           border: "1px solid black",
           padding: 32,
@@ -111,7 +117,7 @@ const CourseFullDescription = ({ course }) => {
       >
         {course.lessons?.length > 0 && (
           <>
-            <Title level={2} style={{ fontSize: 32 }}>
+            <Title level={2} style={{ fontSize: 32 }} className="title">
               Nội dung bài học
             </Title>
             <div
@@ -135,6 +141,7 @@ const CourseFullDescription = ({ course }) => {
                   }}
                 >
                   <div
+                    className="content"
                     style={{
                       fontSize: 18,
                       flex: 1,

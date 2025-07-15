@@ -31,7 +31,7 @@ const SectionCourse = ({ title, courses = [], showMax = 8, showMoreLink }) => {
 
       <Row gutter={[16, 16]} className="section-course-content">
         {courses.slice(0, showMax).map((course) => (
-          <Col key={course.id} xs={24} sm={8} md={8} lg={6}>
+          <Col key={course.id} xs={12} sm={8} md={8} lg={6}>
             <CourseCard {...course} />
           </Col>
         ))}

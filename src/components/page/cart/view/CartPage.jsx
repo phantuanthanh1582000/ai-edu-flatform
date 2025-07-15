@@ -20,9 +20,11 @@ const CartPage = () => {
 
   return (
     <div className="cart-page">
-      <Title level={2}>Giỏ hàng của tôi</Title>
+      <Title className="title-cart" level={2}>
+        Giỏ hàng của tôi
+      </Title>
       <Row gutter={24}>
-        <Col xs={24} md={16}>
+        <Col xs={24} sm={24} md={16}>
           <Card title="Sản phẩm đã chọn" className="cart-card">
             {cartItems.length === 0 ? (
               <Text>Không có sản phẩm nào trong giỏ hàng.</Text>
@@ -70,14 +72,16 @@ const CartPage = () => {
           </Card>
         </Col>
 
-        <Col xs={24} md={8}>
-          <CheckoutSummary
-            total={total}
-            vat={vat}
-            grandTotal={grandTotal}
-            disabled={cartItems.length === 0}
-            onCheckout={() => alert("Đặt hàng thành công!")}
-          />
+        <Col xs={24} sm={24} md={8}>
+          <div className="checkout-cart">
+            <CheckoutSummary
+              total={total}
+              vat={vat}
+              grandTotal={grandTotal}
+              disabled={cartItems.length === 0}
+              onCheckout={() => alert("Đặt hàng thành công!")}
+            />
+          </div>
         </Col>
       </Row>
     </div>

@@ -31,11 +31,25 @@
     }
   }
 
-  .menu {
-    background: transparent;
-    border-bottom: none;
+  .menu-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px; // khoảng cách giữa menu và user
     flex-shrink: 0;
     white-space: nowrap;
+
+    .menu {
+      background: transparent;
+      border-bottom: none;
+      flex-shrink: 0;
+    }
+
+    .user-dropdown {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+    }
   }
 
   .mobile-menu-btn {
@@ -66,7 +80,7 @@
       }
     }
 
-    .menu {
+    .menu-wrapper {
       display: none;
     }
   }

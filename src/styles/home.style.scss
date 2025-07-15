@@ -30,6 +30,16 @@
         }
       }
     }
+    @media (max-width: 992px) {
+      .category-links {
+        font-size: 18px;
+      }
+    }
+    @media (max-width: 768px) {
+      .category-links {
+        font-size: 16px;
+      }
+    }
   }
 
   // ===== BANNER =====
@@ -120,6 +130,39 @@
           max-width: 100%;
           height: auto;
           max-height: 280px;
+        }
+      }
+    }
+    @media (max-width: 992px) {
+      .section-content {
+        max-width: 700px;
+      }
+      .become-teacher {
+        .section-title {
+          font-size: 25px;
+        }
+        .teacher-desc {
+          font-size: 15px !important;
+        }
+      }
+    }
+    @media (max-width: 576px) {
+      .become-teacher {
+        text-align: center;
+        .section-title {
+          font-size: 16px;
+        }
+        .teacher-desc {
+          font-size: 13px !important;
+        }
+        .register-btn {
+          font-size: 13px;
+        }
+      }
+      .teacher-img-wrapper {
+        justify-content: center !important;
+        .teacher-img {
+          width: 200px;
         }
       }
     }

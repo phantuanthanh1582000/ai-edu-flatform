@@ -125,9 +125,9 @@ const HomePage = () => {
       <div className="footer-section">
         <div className="section-content">
           <Row align="middle" gutter={[32, 32]}>
-            <Col xs={24} md={16}>
+            <Col xs={24} sm={16} md={16}>
               <div className="become-teacher">
-                <Title level={2} className="section-title white-text">
+                <Title level={3} className="section-title white-text">
                   Trở thành giảng viên tại PTT Academy
                 </Title>
                 <p className="teacher-desc">
@@ -137,7 +137,7 @@ const HomePage = () => {
                 <Button className="register-btn">Đăng ký ngay</Button>
               </div>
             </Col>
-            <Col xs={24} md={8} className="teacher-img-wrapper">
+            <Col xs={24} sm={8} md={8} className="teacher-img-wrapper">
               <img
                 src="https://cdn-icons-png.flaticon.com/512/219/219970.png"
                 alt="Become a Teacher"

@@ -29,6 +29,11 @@ const Login = () => {
     },
   ];
 
+  const initialValues = {
+    email: "user@ptt.com",
+    password: "123456",
+  };
+
   return (
     <div className="login-container">
       <Title level={2} className="login-title">
@@ -43,6 +48,7 @@ const Login = () => {
           onFinish={onFinish}
           loading={loading}
           submitText="Đăng nhập"
+          initialValues={initialValues}
         />
         <div className="login-footer">
           <span>Bạn chưa có tài khoản? </span>

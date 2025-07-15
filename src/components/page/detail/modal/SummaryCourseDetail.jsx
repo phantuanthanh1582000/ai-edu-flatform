@@ -1,16 +1,5 @@
 import React from "react";
-import {
-  Typography,
-  Image,
-  Row,
-  Col,
-  Tag,
-  Rate,
-  Badge,
-  Card,
-  Divider,
-  Button,
-} from "antd";
+import { Typography, Image, Row, Col, Tag, Rate, Badge } from "antd";
 import CheckoutSummary from "@/components/share/CheckoutSummary";
 import { DownloadOutlined, VideoCameraOutlined } from "@ant-design/icons";
 import FormatUtils from "@/ulti/Format";
@@ -26,9 +15,9 @@ const SummaryCourseDetail = ({ course }) => {
     <div className="sumary-course-detail">
       <Row gutter={[32, 32]}>
         {/* Cột trái: Thông tin khóa học */}
-        <Col xs={24} md={16}>
+        <Col xs={24} md={24} lg={16}>
           <Row gutter={[32, 32]}>
-            <Col xs={24} md={10}>
+            <Col xs={24} sm={10} md={10} lg={10}>
               <div style={{ position: "relative" }}>
                 {course.isAdvanced && (
                   <Tag
@@ -64,8 +53,9 @@ const SummaryCourseDetail = ({ course }) => {
               </div>
             </Col>
 
-            <Col xs={24} md={14}>
+            <Col xs={24} sm={14} md={14} lg={14}>
               <Title
+                className="title"
                 level={2}
                 style={{ display: "flex", alignItems: "center", gap: 12 }}
               >
@@ -150,13 +140,17 @@ const SummaryCourseDetail = ({ course }) => {
         </Col>
 
         {/* Cột phải: Thanh toán */}
-        <Col xs={24} md={8}>
+        <Col xs={24} md={24} lg={8}>
           <CheckoutSummary
             className="checkout-detail"
             total={price}
             vat={vat}
             grandTotal={total}
-            onCheckout={() => alert("Đặt hàng thành công!")}
+            onCheckout={() =>
+              window.messageApi?.success(
+                "Giao dịch thành công. Thông tin khóa học đã được gửi đến email của bạn."
+              )
+            }
           />
         </Col>
       </Row>

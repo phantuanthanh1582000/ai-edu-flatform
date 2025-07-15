@@ -11,7 +11,7 @@ const FooterComponent = () => {
   return (
     <Footer className="footer">
       <Row gutter={[32, 32]}>
-        <Col xs={24} sm={12} md={6}>
+        <Col xs={12} sm={12} md={6}>
           <Link to="/" style={{ textDecoration: "none" }}>
             <Title
               level={3}
@@ -26,7 +26,7 @@ const FooterComponent = () => {
           </Text>
         </Col>
 
-        <Col xs={24} sm={12} md={6}>
+        <Col xs={12} sm={12} md={6}>
           <Title level={5}>Về chúng tôi</Title>
           <Space direction="vertical">
             <Link to="/about">Giới thiệu</Link>
@@ -35,7 +35,7 @@ const FooterComponent = () => {
           </Space>
         </Col>
 
-        <Col xs={24} sm={12} md={6}>
+        <Col xs={12} sm={12} md={6}>
           <Title level={5}>Hỗ trợ</Title>
           <Space direction="vertical">
             <Link to="/faq">Câu hỏi thường gặp</Link>
@@ -44,7 +44,7 @@ const FooterComponent = () => {
           </Space>
         </Col>
 
-        <Col xs={24} sm={12} md={6}>
+        <Col xs={12} sm={12} md={6}>
           <Title level={5}>Kết nối</Title>
           <div className="footer-icons">
             <a

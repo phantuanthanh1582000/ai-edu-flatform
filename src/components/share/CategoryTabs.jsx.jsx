@@ -54,7 +54,7 @@ const CategoryTabs = () => {
             <Spin spinning={loading}>
               <Row gutter={[16, 16]} justify="left">
                 {courses.slice(0, 12).map((course) => (
-                  <Col key={course.id} xs={24} sm={12} md={8} lg={6}>
+                  <Col key={course.id} xs={12} sm={12} md={8} lg={6}>
                     <CourseCard {...course} />
                   </Col>
                 ))}

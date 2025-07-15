@@ -51,4 +51,39 @@
       color: #ccc;
     }
   }
+
+  @media (max-width: 576px) {
+    .footer-logo {
+      font-size: 16px !important;
+      max-width: 150px;
+    }
+
+    .footer-description {
+      font-size: 13px;
+    }
+
+    h5.ant-typography {
+      font-size: 14px;
+    }
+
+    a {
+      font-size: 13px;
+    }
+    .footer-bottom {
+      span {
+        font-size: 13px;
+      }
+    }
+
+    .footer-icons {
+      a {
+        font-size: 13px;
+        margin-right: 12px;
+
+        &:hover {
+          color: #1890ff;
+        }
+      }
+    }
+  }
 }

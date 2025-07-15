@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Layout, Menu, Dropdown, Drawer, Button, Grid } from "antd";
+import { Layout, Menu, Dropdown, Drawer, Button, Grid, Avatar } from "antd";
 import {
   ShoppingCartOutlined,
   UserOutlined,
@@ -23,6 +23,7 @@ const HeaderComponent = () => {
 
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [menuKey, setMenuKey] = useState(Date.now()); // ✅ Key để force remount Menu
 
   const isMobile = !screens.lg;
 
@@ -49,6 +50,7 @@ const HeaderComponent = () => {
     onLogout();
     navigate("/login");
     setOpenDrawer(false);
+    setMenuKey(Date.now()); // ✅ Force re-render menu
   };
 
   const handleCartClick = (e) => {
@@ -77,74 +79,53 @@ const HeaderComponent = () => {
   };
 
   const getMenuItems = () => {
-    return [
+    const items = [
       {
         key: "/",
-        label: isMobile ? (
-          <span onClick={() => handleNavigate("/")}>Trang chủ</span>
-        ) : (
-          <Link to="/">Trang chủ</Link>
-        ),
+        label: <Link to="/">Trang chủ</Link>,
       },
       {
         key: "/about",
-        label: isMobile ? (
-          <span onClick={() => handleNavigate("/about")}>Giới thiệu</span>
-        ) : (
-          <Link to="/about">Giới thiệu</Link>
-        ),
+        label: <Link to="/about">Giới thiệu</Link>,
       },
       {
         key: "/cart",
-        label: user ? (
-          <span onClick={() => handleNavigate("/cart")}>
-            <ShoppingCartOutlined style={{ fontSize: 18 }} />
+        label: (
+          <span
+            onClick={
+              user
+                ? () => handleNavigate("/cart")
+                : (e) => {
+                    e.preventDefault();
+                    handleCartClick(e);
+                  }
+            }
+          >
+            Giỏ hàng
           </span>
-        ) : (
-          <a href="/login" onClick={handleCartClick}>
-            <ShoppingCartOutlined style={{ fontSize: 18 }} />
-          </a>
         ),
       },
-      !user && {
+    ];
+
+    if (!user) {
+      items.push({
         key: "/login",
         label: (
           <span onClick={() => handleNavigate("/login")}>
             Đăng nhập/Đăng ký
           </span>
         ),
-      },
-      user &&
-        (!isMobile
-          ? {
-              key: "user",
-              label: (
-                <Dropdown menu={userMenu} placement="bottomRight" arrow>
-                  <span style={{ cursor: "pointer" }}>👋 {user.name}</span>
-                </Dropdown>
-              ),
-            }
-          : {
-              key: "profile",
-              label: (
-                <span onClick={() => handleNavigate("/profile")}>
-                  👤 Trang cá nhân
-                </span>
-              ),
-            }),
-      user &&
-        isMobile && {
-          key: "logout",
-          label: <span onClick={handleLogout}>🚪 Đăng xuất</span>,
-        },
-    ].filter(Boolean);
+      });
+    }
+
+    return items;
   };
 
   return (
     <Header className="header">
       <div className="header-left">
         <div className="logo">
-          <Link to="/">🎓 PTT ACADEMY</Link>
+          <Link to="/">{isMobile ? "🎓" : "🎓 PTT ACADEMY"}</Link>
         </div>
         <DebounceSelect
           className="search-course"
@@ -156,21 +137,42 @@ const HeaderComponent = () => {
       </div>
 
       {!isMobile ? (
-        <Menu
-          theme="light"
-          mode="horizontal"
-          selectedKeys={[location.pathname]}
-          items={getMenuItems()}
-          className="menu"
-        />
+        <div className="header-right">
+          <div className="menu-wrapper">
+            <Menu
+              key={menuKey} // ✅ Gán key để Menu re-render khi cần
+              theme="light"
+              mode="horizontal"
+              selectedKeys={[location.pathname]}
+              items={getMenuItems()}
+              className="menu"
+            />
+            {user && (
+              <Dropdown menu={userMenu} placement="bottomRight" arrow>
+                <span className="user-dropdown">
+                  <Avatar src={user.avatar} size="small" />
+                  <span style={{ marginLeft: 8 }}>{user.name}</span>
+                </span>
+              </Dropdown>
+            )}
+          </div>
+        </div>
       ) : (
         <>
           <Button
-            icon={<MenuOutlined />}
             type="text"
             onClick={() => setOpenDrawer(true)}
             className="mobile-menu-btn"
-          />
+          >
+            {user ? (
+              <Avatar size="large" src={user.avatar}>
+                {user.name?.charAt(0)}
+              </Avatar>
+            ) : (
+              <MenuOutlined />
+            )}
+          </Button>
+
           <Drawer
             title="Menu"
             placement="right"
@@ -180,7 +182,21 @@ const HeaderComponent = () => {
             <Menu
               mode="vertical"
               selectedKeys={[location.pathname]}
-              items={getMenuItems()}
+              items={[
+                ...getMenuItems(),
+                user && {
+                  key: "profile",
+                  label: (
+                    <span onClick={() => handleNavigate("/profile")}>
+                      Trang cá nhân
+                    </span>
+                  ),
+                },
+                user && {
+                  key: "logout",
+                  label: <span onClick={handleLogout}>Đăng xuất</span>,
+                },
+              ].filter(Boolean)}
               onClick={() => setOpenDrawer(false)}
             />
           </Drawer>

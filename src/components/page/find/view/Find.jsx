@@ -46,7 +46,7 @@ const FindPage = () => {
             <>
               <Row gutter={[24, 24]}>
                 {courses.map((course) => (
-                  <Col xs={24} sm={12} md={8} lg={6} key={course.id}>
+                  <Col xs={12} sm={12} md={8} lg={6} key={course.id}>
                     <CourseCard {...course} />
                   </Col>
                 ))}
