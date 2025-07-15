@@ -50,7 +50,7 @@ const HeaderComponent = () => {
     onLogout();
     navigate("/login");
     setOpenDrawer(false);
-    setMenuKey(Date.now()); // ✅ Force re-render menu
+    setMenuKey(Date.now());
   };
 
   const handleCartClick = (e) => {
