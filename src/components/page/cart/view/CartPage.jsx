@@ -90,7 +90,9 @@ const CartPage = () => {
                 vat={vat}
                 grandTotal={grandTotal}
                 disabled={cartItems.length === 0}
-                onCheckout={() => alert("Đặt hàng thành công!")}
+                onCheckout={() =>
+                  window.messageApi?.success("Đặt hàng thành công!")
+                }
               />
             </div>
           </Col>
