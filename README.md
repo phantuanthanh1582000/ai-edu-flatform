@@ -100,7 +100,7 @@ npm run dev
 
 ---
 
-## 📁 Cấu trúc thư mục
+## Cấu trúc thư mục
 
 ```bash
 src/
@@ -121,7 +121,7 @@ src/
 
 ---
 
-## 🧪 Gợi ý kiểm thử
+## Gợi ý kiểm thử
 
 - Tìm khóa học → thanh tìm kiếm
 - Lọc khóa học → chọn danh mục hoặc mức giá
@@ -133,7 +133,7 @@ src/
 
 ---
 
-## 📦 Triển khai & môi trường
+## Triển khai & môi trường
 
 **Deploy**: [https://ai-edu-flatform.vercel.app](https://ai-edu-flatform.vercel.app)
 
@@ -145,7 +145,7 @@ VITE_BACKEND_URL=https://api.pttacademy.com
 
 ---
 
-## 👨‍💼 Tác giả
+## Tác giả
 
 - 👤 **Phan Tuấn Thành**
 - 📧 [tphan10932@gmail.com](mailto:tphan10932@gmail.com)
