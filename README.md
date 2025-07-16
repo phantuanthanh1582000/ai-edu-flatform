@@ -123,6 +123,7 @@ src/
 
 ## Gợi ý kiểm thử
 
+- **Tài khoản demo: user@ptt.com - 123456**
 - Tìm khóa học → thanh tìm kiếm
 - Lọc khóa học → chọn danh mục hoặc mức giá
 - Bấm "❤️" → thêm vào yêu thích
