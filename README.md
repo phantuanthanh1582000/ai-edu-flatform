@@ -1,39 +1,39 @@
-# 📘 PTT Academy - Sàn Giáo Dục Thương Mại Điện Tử
+# PTT Academy - Sàn Giáo Dục Thương Mại Điện Tử
 
 > **Demo**: [https://ai-edu-flatform.vercel.app/](https://ai-edu-flatform.vercel.app/)  
 > **Github**: [https://github.com/phantuanthanh1582000/ai-edu-flatform](https://github.com/phantuanthanh1582000/ai-edu-flatform)
 
 ---
 
-## 🧠 Giới thiệu
+## Giới thiệu
 
 **PTT Academy** là nền tảng giáo dục thương mại điện tử tích hợp AI, nơi người dùng có thể:
 
-- 🔍 Tìm kiếm và lọc khóa học theo danh mục, giá
-- ❤️ Yêu thích, thêm vào giỏ hàng, xem chi tiết sản phẩm
-- 🤖 Gợi ý khóa học thông minh dựa trên hành vi người dùng (AI)
-- 💬 Chatbot hỗ trợ tìm khóa học
-- 📝 Đăng nhập / Đăng ký / Quản lý thông tin cá nhân
-- 💰 Thanh toán khóa học
-- ⭐ Đánh giá, bình luận khoá học
-- 🕵️‍♂️ Lưu lịch sử đã xem
-- 💻 Giao diện responsive hiện đại, hỗ trợ mobile/tablet
+- Tìm kiếm và lọc khóa học theo danh mục, giá
+- Yêu thích, thêm vào giỏ hàng, xem chi tiết sản phẩm
+- Gợi ý khóa học thông minh dựa trên hành vi người dùng (AI)
+- Chatbot hỗ trợ tìm khóa học
+- Đăng nhập / Đăng ký / Quản lý thông tin cá nhân
+- Thanh toán khóa học
+- Đánh giá, bình luận khoá học
+- Lưu lịch sử đã xem
+- Giao diện responsive hiện đại, hỗ trợ mobile/tablet
 
 ---
 
-## 🛠️ Công nghệ sử dụng
+## Công nghệ sử dụng
 
-- ⚛️ **ReactJS** + Vite
-- 🎨 **Ant Design** - UI Framework
-- 🔄 **React Router DOM** - Routing
-- 📦 **Axios** - Gọi API
-- 📊 **Mock AI Suggestion** - Gợi ý sản phẩm
-- 💾 **LocalStorage** - Lưu trạng thái người dùng
-- 🤖 **Chatbot** - Hỗ trợ tìm khóa học thông minh
+- **ReactJS** + Vite
+- **Ant Design** - UI Framework
+- **React Router DOM** - Routing
+- **Axios** - Gọi API
+- **Mock AI Suggestion** - Gợi ý sản phẩm
+- **LocalStorage** - Lưu trạng thái người dùng
+- **Chatbot** - Hỗ trợ tìm khóa học thông minh
 
 ---
 
-## ✨ Tính năng chính
+## Tính năng chính
 
 ### 1. Đăng ký / Đăng nhập
 
@@ -89,7 +89,7 @@
 
 ---
 
-## 🚀 Hướng dẫn chạy dự án
+## Hướng dẫn chạy dự án
 
 ```bash
 git clone https://github.com/phantuanthanh1582000/ai-edu-flatform.git
