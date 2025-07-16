@@ -16,7 +16,7 @@ const mockUsers = [
     email: "user@ptt.com",
     password: "123456",
     name: "User PTT",
-    avatar: "https://i.pravatar.cc/150?u=user@ptt.com",
+    avatar: "https://i.pravatar.cc/150?img=59",
     role: "user",
     phone: "0909123456",
     gender: "male",
@@ -181,7 +181,11 @@ mock.onGet("/api/v1/favorites").reply((config) => {
 
 mock.onGet("/api/v1/cart").reply((config) => {
   const ids = config.params?.ids || [];
-  const matched = Courses.filter((course) => ids.includes(course.id));
+
+  const idList = Array.isArray(ids) ? ids : [ids];
+
+  const matched = Courses.filter((course) => idList.includes(course.id));
+
   return [
     200,
     {
@@ -221,10 +225,8 @@ mock.onGet("/api/v1/detail").reply((config) => {
 });
 
 mock.onGet("/api/v1/courses/by-ids").reply((config) => {
-  // Lấy danh sách id từ query param dạng mảng ids[]
   const ids = config.params?.ids || [];
 
-  // Lọc ra danh sách khóa học có id nằm trong mảng ids
   const matched = Courses.filter((course) => ids.includes(course.id));
 
   return [
@@ -235,4 +237,21 @@ mock.onGet("/api/v1/courses/by-ids").reply((config) => {
       data: matched,
     },
   ];
+});
+
+let reviews = [];
+
+mock.onGet("/api/v1/reviews").reply((config) => {
+  const courseId = config.params?.courseId;
+  const filtered = reviews.filter((r) => r.courseId === courseId);
+  return [
+    200,
+    { code: 1, message: "Lấy danh sách đánh giá thành công", data: filtered },
+  ];
+});
+
+mock.onPost("/api/v1/reviews").reply((config) => {
+  const review = JSON.parse(config.data);
+  reviews.push(review);
+  return [200, { code: 1, message: "Gửi đánh giá thành công" }];
 });

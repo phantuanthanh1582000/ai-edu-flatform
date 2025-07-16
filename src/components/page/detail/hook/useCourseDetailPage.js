@@ -6,9 +6,7 @@ const useCourseDetailPage = (courseId) => {
   const [loading, setLoading] = useState(true);
   const [historyCourses, setHistoryCourses] = useState([]);
 
-  useEffect(() => {
-    if (!courseId) return;
-
+  const fetchCourseDetail = () => {
     setLoading(true);
 
     getCourseDetail(courseId)
@@ -18,7 +16,9 @@ const useCourseDetailPage = (courseId) => {
         }
       })
       .finally(() => setLoading(false));
+  };
 
+  const fetchViewedCourses = () => {
     let viewedIds = JSON.parse(localStorage.getItem("viewedCourses") || "[]");
     viewedIds = viewedIds.filter((id) => id !== courseId);
 
@@ -29,6 +29,13 @@ const useCourseDetailPage = (courseId) => {
         }
       });
     }
+  };
+
+  useEffect(() => {
+    if (!courseId) return;
+
+    fetchCourseDetail();
+    fetchViewedCourses();
   }, [courseId]);
 
   return { course, loading, historyCourses };

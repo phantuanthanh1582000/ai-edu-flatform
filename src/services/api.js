@@ -24,9 +24,7 @@ export const getFavorites = (ids, page = 1, limit = 8) => {
 
 export const getCartItems = (ids) => {
   return axiosInstance.get("/api/v1/cart", {
-    params: {
-      ids,
-    },
+    params: { ids },
   });
 };
 
@@ -40,4 +38,14 @@ export const getCoursesByIds = (ids) => {
   return axiosInstance.get("/api/v1/courses/by-ids", {
     params: { ids },
   });
+};
+
+export const getReviewsByCourseId = (courseId) => {
+  return axiosInstance.get("/api/v1/reviews", {
+    params: { courseId },
+  });
+};
+
+export const saveReview = (review) => {
+  return axiosInstance.post("/api/v1/reviews", review);
 };

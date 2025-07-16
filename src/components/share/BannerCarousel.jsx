@@ -16,6 +16,15 @@ const banners = [
       "https://file.unica.vn/storage/db240c65c57e0a4f35edba3312c62511cbac63cc/ai-inhouse-slide-trang-chu-unica.png",
     alt: "Banner 3",
   },
+  {
+    src: "https://i.imgur.com/urj5lD9.png",
+    alt: "Banner 4",
+  },
+  {
+    src:
+      "https://file.unica.vn/storage/db240c65c57e0a4f35edba3312c62511cbac63cc/banner-web-tkt-1516-4-1.png",
+    alt: "Banner 5",
+  },
 ];
 
 const BannerCarousel = () => {

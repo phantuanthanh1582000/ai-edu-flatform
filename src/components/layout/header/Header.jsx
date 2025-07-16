@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import { Layout, Menu, Dropdown, Drawer, Button, Grid, Avatar } from "antd";
-import {
-  ShoppingCartOutlined,
-  UserOutlined,
-  LogoutOutlined,
-  MenuOutlined,
-} from "@ant-design/icons";
+import { UserOutlined, LogoutOutlined, MenuOutlined } from "@ant-design/icons";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { DebounceSelect } from "@/components/share/DebounceSelect";
 import { Courses } from "@/data/mockData";

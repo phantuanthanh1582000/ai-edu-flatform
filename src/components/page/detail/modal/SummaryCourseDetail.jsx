@@ -14,7 +14,6 @@ const SummaryCourseDetail = ({ course }) => {
   return (
     <div className="sumary-course-detail">
       <Row gutter={[32, 32]}>
-        {/* Cột trái: Thông tin khóa học */}
         <Col xs={24} md={24} lg={16}>
           <Row gutter={[32, 32]}>
             <Col xs={24} sm={10} md={10} lg={10}>
@@ -139,7 +138,6 @@ const SummaryCourseDetail = ({ course }) => {
           </Row>
         </Col>
 
-        {/* Cột phải: Thanh toán */}
         <Col xs={24} md={24} lg={8}>
           <CheckoutSummary
             className="checkout-detail"

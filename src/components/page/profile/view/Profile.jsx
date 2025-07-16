@@ -27,7 +27,6 @@ const ProfilePage = () => {
   const isMobile = !screens.md;
 
   const handleMenuClick = ({ key }) => {
-    console.log(key);
     setSelectedKey(key);
     if (isMobile) setDrawerVisible(false);
   };
@@ -82,7 +81,6 @@ const ProfilePage = () => {
         </Col>
       </Row>
 
-      {/* Drawer menu cho mobile */}
       <Drawer
         title="Menu"
         placement="left"

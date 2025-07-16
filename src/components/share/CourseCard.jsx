@@ -58,11 +58,11 @@ const CourseCard = ({
         updatedFavorites.push(id);
       }
       localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-      window.messageApi?.success(`Đã thêm vào yêu thích sản phẩm có ID: ${id}`);
+      window.messageApi?.success("Đã thêm khóa học vào yêu thích");
     } else {
       updatedFavorites = storedFavorites.filter((favId) => favId !== id);
       localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-      window.messageApi?.success(`Đã bỏ khỏi yêu thích sản phẩm có ID: ${id}`);
+      window.messageApi?.success("Đã bỏ khóa học khỏi yêu thích");
       if (onUnfavorite) onUnfavorite();
     }
   };
@@ -92,7 +92,7 @@ const CourseCard = ({
     }
 
     localStorage.setItem("cart", JSON.stringify(storedCart));
-    window.messageApi?.success("Đã thêm vào giỏ hàng");
+    window.messageApi?.success("Đã thêm khóa học vào giỏ hàng");
   };
 
   const cardContent = (

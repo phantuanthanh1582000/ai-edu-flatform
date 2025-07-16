@@ -8,7 +8,6 @@ import {
   Space,
   Row,
   Col,
-  Typography,
   Divider,
 } from "antd";
 import {
@@ -20,8 +19,6 @@ import {
   TagsOutlined,
 } from "@ant-design/icons";
 import { Categories } from "@/data/mockData";
-
-const { Title } = Typography;
 
 const priceRanges = [
   { label: "Tất cả", min: null, max: null },

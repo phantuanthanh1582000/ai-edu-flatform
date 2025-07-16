@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Tabs, Spin, Typography, message, Button } from "antd";
+import { Tabs, Spin, message, Button } from "antd";
 import { getCourses } from "@/services/api";
 import { Categories } from "@/data/mockData";
 import CourseCard from "./CourseCard";

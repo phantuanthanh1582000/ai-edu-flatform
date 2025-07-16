@@ -17,7 +17,6 @@ const HomePage = () => {
 
   return (
     <div className="home-page">
-      {/* DANH MỤC CATEGORY */}
       <div className="category-bar">
         <div className="category-links">
           {Categories.map((category) => {
@@ -58,14 +57,12 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* BANNER */}
       <div className="banner-wrapper">
         <div className="banner-inner">
           <BannerCarousel />
         </div>
       </div>
 
-      {/* ƯU ĐÃI */}
       <div className="section-wrapper">
         <div className="section-content">
           <SectionCourse
@@ -77,7 +74,6 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* PHỔ BIẾN */}
       <div className="section-wrapper">
         <div className="section-content">
           <SectionCourse
@@ -89,7 +85,6 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* NÂNG CAO */}
       <div className="section-wrapper">
         <div className="section-content">
           <SectionCourse
@@ -101,7 +96,6 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* TABS */}
       <div className="section-wrapper">
         <div className="section-content">
           <Title level={2} className="section-title">
@@ -111,7 +105,6 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* GIẢNG VIÊN */}
       <div className="section-wrapper">
         <div className="section-content">
           <Title level={2} className="section-title">
@@ -121,7 +114,6 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* FOOTER SECTION */}
       <div className="footer-section">
         <div className="section-content">
           <Row align="middle" gutter={[32, 32]}>
@@ -148,7 +140,6 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* NÚT GỢI Ý */}
       <Link to="/find?suggested=true">
         <Tooltip title="Gợi ý sản phẩm phù hợp" placement="leftTop">
           <Button className="suggest-btn">🎁</Button>

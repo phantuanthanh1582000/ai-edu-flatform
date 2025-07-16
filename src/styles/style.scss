@@ -283,7 +283,7 @@
   }
   @media (max-width: 992px) {
     .course-image {
-      height: 120px !important;
+      height: 150px !important;
     }
 
     .ant-card-body {
@@ -292,8 +292,6 @@
       }
 
       .meta-info {
-        display: flex;
-        flex-direction: column;
         font-size: 12px;
       }
 
@@ -303,15 +301,23 @@
       }
 
       .price {
-        flex-direction: column;
         .full-price,
         .original-price,
         .discount-price {
           font-size: 12px !important;
         }
-        .original-price {
-          margin-right: 0 !important;
-        }
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    .meta-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .price {
+      flex-direction: column;
+      .original-price {
+        margin-right: 0 !important;
       }
     }
   }

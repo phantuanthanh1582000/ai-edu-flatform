@@ -1,5 +1,3 @@
-// src/components/course/CourseFullDescription.jsx
-
 import React from "react";
 import { Typography, Row, Col } from "antd";
 
@@ -16,7 +14,6 @@ const CourseFullDescription = ({ course }) => {
         }}
       >
         <Row gutter={48}>
-          {/* Cột trái: Giới thiệu + Yêu cầu */}
           <Col xs={24} md={12}>
             <Title
               className="title"
@@ -66,7 +63,6 @@ const CourseFullDescription = ({ course }) => {
             )}
           </Col>
 
-          {/* Cột phải: Kỹ năng đạt được */}
           <Col xs={24} md={12}>
             {course.skills?.length > 0 && (
               <>

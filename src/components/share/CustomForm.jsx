@@ -34,7 +34,7 @@ const CustomForm = ({
           />
         );
       case "checkbox":
-        return <Checkbox>{label}</Checkbox>; // Label sẽ hiển thị bên phải
+        return <Checkbox>{label}</Checkbox>;
       default:
         return <Input type={type} placeholder={placeholder || label} />;
     }
